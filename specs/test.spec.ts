@@ -1,6 +1,6 @@
 import { MainPage } from "../pages/main.page";
 
-const mainPage = new MainPage("body");
+const mainPage = new MainPage();
 describe("test", function () {
   it("test1", async function () {
     await browser.url("https://about.gitlab.com");

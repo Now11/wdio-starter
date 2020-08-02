@@ -1,4 +1,4 @@
-import { MainPage } from "./test/test.page";
+import { MainPage } from "./main.page";
 
 const provider = {
   pages: {
