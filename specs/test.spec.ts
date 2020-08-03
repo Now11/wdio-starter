@@ -1,10 +1,10 @@
-import { MainPage } from "../pages/main.page";
+import { provider } from "../framework";
 
-const mainPage = new MainPage();
+const mainPage = provider.main();
+
 describe("test", function () {
   it("test1", async function () {
     await browser.url("https://about.gitlab.com");
-    await mainPage.header.toSignUp();
-    await browser.pause(5000);
+    await mainPage.header.signUp.click();
   });
 });

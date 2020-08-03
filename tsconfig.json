@@ -4,7 +4,8 @@
     "sourceMap": true,
     "module": "commonjs",
     "outDir": "built",
+    "typeRoots": ["./lib/commands/**/*.ts"],
     "types": ["node", "webdriverio", "@wdio/mocha-framework", "@wdio/selenium-standalone-service"]
   },
-  "include": ["./specs/**/**.ts", "./pages/**/**.ts"]
+  "include": ["./specs/**/**.ts", "./pages/**/**.ts", "./lib"]
 }
