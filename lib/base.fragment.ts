@@ -1,33 +1,33 @@
 import { Element } from "webdriverio";
 
 abstract class BaseFragment {
-  private rootElementFn: () => Promise<Element>;
+  private currentElementFn: () => Promise<Element>;
   private name: string;
   protected element: Element;
 
-  constructor(rootPage: () => Promise<Element>, name?: string) {
-    this.rootElementFn = rootPage;
+  constructor(currentElementFn: () => Promise<Element>, name?: string) {
+    this.currentElementFn = currentElementFn;
     this.name = name || BaseFragment.name;
   }
 
-  private async initElem() {
+  private async initCurrentElement() {
     //await el.waitForExist({ timeout: 5000, timeoutMsg: `${this.name} fragment does not exist` });
-    this.element = await this.rootElementFn();
+    this.element = await this.currentElementFn();
   }
 
   get fragmentName() {
     return this.name;
   }
 
-  private getElement(selector: string) {
+  private getChildElement(selector: string) {
     return async () => {
-      await this.initElem();
+      await this.initCurrentElement();
       return await this.element.$(selector);
     };
   }
 
   protected initChild(childClass, selector: string, ...args) {
-    return new childClass(this.getElement(selector), ...args);
+    return new childClass(this.getChildElement(selector), ...args);
   }
 }
 

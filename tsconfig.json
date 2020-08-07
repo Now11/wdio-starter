@@ -8,5 +8,5 @@
     "typeRoots": ["./lib/commands/**/*.ts"],
     "types": ["node", "webdriverio", "@wdio/mocha-framework", "@wdio/selenium-standalone-service"]
   },
-  "include": ["./specs/**/**.ts", "./pages/**/**.ts", "./lib", "./test.ts"]
+  "include": ["./specs/**/**.ts", "./pages/**/**.ts", "./lib"]
 }

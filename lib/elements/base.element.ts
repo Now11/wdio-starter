@@ -11,7 +11,7 @@ abstract class BaseElement {
     this.name = name || BaseElement.name;
   }
 
-  protected async initElem() {
+  protected async initCurrentElement() {
     this.element = await this.root();
   }
 
@@ -20,12 +20,12 @@ abstract class BaseElement {
   }
 
   async waitForExist() {
-    await this.initElem();
+    await this.initCurrentElement();
     await wait.forExist(this);
   }
 
   async waitForVisible() {
-    await this.initElem();
+    await this.initCurrentElement();
     await wait.forVisible(this);
   }
 

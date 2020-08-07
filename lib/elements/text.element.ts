@@ -1,8 +1,8 @@
 import { BaseElement } from "./base.element";
 
 class TextElement extends BaseElement {
-  constructor(rootEl, name) {
-    super(rootEl, name);
+  constructor(root, name) {
+    super(root, name);
   }
 }
 

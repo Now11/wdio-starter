@@ -20,14 +20,14 @@ abstract class BasePage {
   //   await this.element.click();
   // }
 
-  protected getElement(selector: string) {
+  protected getChildElement(selector: string) {
     return async () => {
       await this.initElem();
       return await this.element.$(selector);
     };
   }
   protected initChild(childClass, selector: string, ...args) {
-    return new childClass(this.getElement(selector), ...args);
+    return new childClass(this.getChildElement(selector), ...args);
   }
 }
 export { BasePage };
