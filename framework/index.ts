@@ -1,7 +1,9 @@
 import { MainPage } from "./pages";
 
 const provider = {
-  main: () => new MainPage(),
+  pages: {
+    main: () => new MainPage(),
+  },
 };
 
 export { provider };

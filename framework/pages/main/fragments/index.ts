@@ -1,1 +1,1 @@
-export * from "./header.fragment";
+export * from "./table.fragment";

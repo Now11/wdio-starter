@@ -1,23 +1,31 @@
 import { Element } from "webdriverio";
-
-class BasePage {
+import { wait } from "./element_utils";
+abstract class BasePage {
   private root: string;
   private name: string;
-
+  protected element: Element;
   constructor(root: string, name?: string) {
     this.root = root;
     this.name = name || BasePage.name;
   }
 
-  protected getElement(fragmentRoot: string) {
-    return async () => {
-      const root = await $(this.root);
-      return await root.$(fragmentRoot);
-    };
+  private async initElem() {
+    //await el.waitForExist({ timeout: 5000, timeoutMsg: `${this.name} does not exist` });
+    this.element = await $(this.root);
   }
 
-  //TO DO: add waitForExist method
+  // async click() {
+  //   if (!this.element) await this.initElem();
+  //   await wait.forVisible(this);
+  //   await this.element.click();
+  // }
 
+  protected getElement(selector: string) {
+    return async () => {
+      await this.initElem();
+      return await this.element.$(selector);
+    };
+  }
   protected initChild(childClass, selector: string, ...args) {
     return new childClass(this.getElement(selector), ...args);
   }

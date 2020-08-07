@@ -1,10 +1,21 @@
 import { provider } from "../framework";
+import { expect } from "chai";
+const mainPage = provider.pages.main();
 
-const mainPage = provider.main();
+describe("describe 1", function () {
+  beforeEach(async () => {
+    await browser.reloadSession();
+  });
 
-describe("test", function () {
   it("test1", async function () {
-    await browser.url("https://about.gitlab.com");
-    await mainPage.header.signUp.click();
+    await browser.url("https://webscraper.io/test-sites/tables");
+    const text = await mainPage.table.cell.getText();
+    expect(text).to.eq("Potter");
+  });
+
+  it("test2", async function () {
+    await browser.url("https://webscraper.io/test-sites/tables");
+    const text = await mainPage.table.cell.getText();
+    expect(text).to.eq("Potter");
   });
 });

@@ -1,30 +1,34 @@
 import { Element } from "webdriverio";
 
-class BaseFragmen {
+abstract class BaseFragment {
   private rootElementFn: () => Promise<Element>;
   private name: string;
+  protected element: Element;
 
   constructor(rootPage: () => Promise<Element>, name?: string) {
     this.rootElementFn = rootPage;
-    this.name = name || BaseFragmen.name;
+    this.name = name || BaseFragment.name;
   }
 
-  private get root() {
-    return this.rootElementFn();
+  private async initElem() {
+    //await el.waitForExist({ timeout: 5000, timeoutMsg: `${this.name} fragment does not exist` });
+    this.element = await this.rootElementFn();
+  }
+
+  get fragmentName() {
+    return this.name;
   }
 
   private getElement(selector: string) {
     return async () => {
-      const root = await this.root;
-      return await root.$(selector);
+      await this.initElem();
+      return await this.element.$(selector);
     };
   }
-
-  //TO DO: add waitForExist method
 
   protected initChild(childClass, selector: string, ...args) {
     return new childClass(this.getElement(selector), ...args);
   }
 }
 
-export { BaseFragmen };
+export { BaseFragment };

@@ -8,7 +8,7 @@ interface IElement {
 const wait = {
   forVisible: async (ctx) => {
     const { element, name }: IElement = ctx;
-    await element.waitForDisplayed({ timeout: 5000, timeoutMsg: `Element ${name} should be visible` });
+    await element.waitForDisplayed({ timeout: 1000, timeoutMsg: `Element ${name} should be visible` });
   },
   forExist: async (ctx) => {
     const { element, name }: IElement = ctx;

@@ -1,19 +1,18 @@
 import { Element } from "webdriverio";
 import { wait } from "../element_utils";
 
-class BaseElement {
-  protected root: () => Promise<Element>;
-  private name: string;
+abstract class BaseElement {
+  private root: () => Promise<Element>;
+  protected name: string;
   protected element: Element;
 
-  constructor(root: () => Promise<Element>, name?: string) {
-    this.root = root;
+  constructor(rootFragment: () => Promise<Element>, name?: string) {
+    this.root = rootFragment;
     this.name = name || BaseElement.name;
   }
 
-  async initElem() {
-    const el = await this.root();
-    this.element = el;
+  protected async initElem() {
+    this.element = await this.root();
   }
 
   get elementName() {
@@ -21,12 +20,12 @@ class BaseElement {
   }
 
   async waitForExist() {
-    if (!this.element) await this.initElem();
-    wait.forExist(this);
+    await this.initElem();
+    await wait.forExist(this);
   }
 
   async waitForVisible() {
-    await this.waitForExist();
+    await this.initElem();
     await wait.forVisible(this);
   }
 
@@ -38,6 +37,11 @@ class BaseElement {
   async sendKeys(keys: string) {
     await this.waitForVisible();
     await this.element.setValue(keys);
+  }
+
+  async getText() {
+    await this.waitForVisible();
+    return await this.element.getText();
   }
 }
 
