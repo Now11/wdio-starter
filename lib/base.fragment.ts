@@ -3,7 +3,7 @@ import { Element } from "webdriverio";
 abstract class BaseFragment {
   private currentElementFn: () => Promise<Element>;
   private name: string;
-  protected element: Element;
+  private element: Element;
 
   constructor(currentElementFn: () => Promise<Element>, name?: string) {
     this.currentElementFn = currentElementFn;

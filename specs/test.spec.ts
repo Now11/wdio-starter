@@ -9,13 +9,13 @@ describe("describe 1", function () {
 
   it("test1", async function () {
     await browser.url("https://webscraper.io/test-sites/tables");
-    const text = await mainPage.table.cell.getText();
+    const text = await mainPage.getTableCellText();
     expect(text).to.eq("Potter");
   });
 
   it("test2", async function () {
     await browser.url("https://webscraper.io/test-sites/tables");
-    const text = await mainPage.table.cell.getText();
+    const text = await mainPage.getTableCellText();
     expect(text).to.eq("Potter");
   });
 });
