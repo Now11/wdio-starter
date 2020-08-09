@@ -1,5 +1,6 @@
 import { Element } from "webdriverio";
 import { wait } from "./element_utils";
+import { BaseFragment } from "./base.fragment";
 abstract class BasePage {
   private root: string;
   private name: string;
@@ -26,6 +27,7 @@ abstract class BasePage {
       return await this.element.$(selector);
     };
   }
+
   protected initChild(childClass, selector: string, ...args) {
     return new childClass(this.getChildElement(selector), ...args);
   }

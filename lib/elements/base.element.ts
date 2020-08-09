@@ -1,8 +1,8 @@
-import { Element } from "webdriverio";
+import { Element, ElementArray } from "webdriverio";
 import { wait } from "../element_utils";
 
 abstract class BaseElement {
-  private root: () => Promise<Element>;
+  protected root: () => Promise<Element>;
   protected name: string;
   protected element: Element;
 

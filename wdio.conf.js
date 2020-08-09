@@ -8,7 +8,6 @@ exports.config = {
   maxInstances: 2,
   capabilities: [
     {
-      //excludeDriverLogs: ["*"],
       browserName: "chrome",
       "goog:chromeOptions": {
         args: ["window-size=1960,1080", "--headless"],

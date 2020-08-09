@@ -11,23 +11,27 @@ abstract class BaseFragment {
   }
 
   private async initCurrentElement() {
-    //await el.waitForExist({ timeout: 5000, timeoutMsg: `${this.name} fragment does not exist` });
-    this.element = await this.currentElementFn();
+    const el = await this.currentElementFn();
+    await el.waitForExist({ timeout: 5000, timeoutMsg: `${this.name} fragment does not exist` });
+    this.element = el;
   }
 
   get fragmentName() {
     return this.name;
   }
 
-  private getChildElement(selector: string) {
+  private getChildElement(selector: string, name: string, elemArr: boolean) {
     return async () => {
       await this.initCurrentElement();
+      if (elemArr) {
+        return await this.element.$$(selector);
+      }
       return await this.element.$(selector);
     };
   }
 
-  protected initChild(childClass, selector: string, ...args) {
-    return new childClass(this.getChildElement(selector), ...args);
+  protected initChild(childClass, selector: string, name: string, { elemArr } = { elemArr: false }, ...args) {
+    return new childClass(this.getChildElement(selector, name, elemArr), ...args);
   }
 }
 
