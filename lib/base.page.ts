@@ -1,35 +1,31 @@
-import { Element } from "webdriverio";
+import { Element, ElementArray } from "webdriverio";
 import { wait } from "./element_utils";
 import { BaseFragment } from "./base.fragment";
+
 abstract class BasePage {
   private root: string;
   private name: string;
   protected element: Element;
-  constructor(root: string, name?: string) {
+  constructor(root: string, name: string = BasePage.name) {
     this.root = root;
-    this.name = name || BasePage.name;
+    this.name = name;
   }
 
   private async initElem() {
-    //await el.waitForExist({ timeout: 5000, timeoutMsg: `${this.name} does not exist` });
-    this.element = await $(this.root);
+    const elem = await $(this.root);
+    await elem.waitForExist({ timeout: 5000, timeoutMsg: `${this.name} does not exist` });
+    this.element = elem;
   }
 
-  // async click() {
-  //   if (!this.element) await this.initElem();
-  //   await wait.forVisible(this);
-  //   await this.element.click();
-  // }
-
   protected getChildElement(selector: string) {
-    return async () => {
+    return async (): Promise<WebdriverIO.Element> => {
       await this.initElem();
       return await this.element.$(selector);
     };
   }
 
-  protected initChild(childClass, selector: string, ...args) {
-    return new childClass(this.getChildElement(selector), ...args);
+  protected initChild(childClass, selector: string, name: string, isArr: boolean = false, ...args) {
+    return new childClass(this.getChildElement(selector), name, { isArr }, ...args);
   }
 }
 export { BasePage };

@@ -4,7 +4,7 @@ import { wait } from "../element_utils";
 abstract class BaseElement {
   protected root: () => Promise<Element>;
   protected name: string;
-  protected element: Element;
+  element: Element;
 
   constructor(rootFragment: () => Promise<Element>, name?: string) {
     this.root = rootFragment;
@@ -13,6 +13,11 @@ abstract class BaseElement {
 
   protected async initCurrentElement() {
     this.element = await this.root();
+    return this.element;
+  }
+
+  get currentElement() {
+    return this.initCurrentElement();
   }
 
   get elementName() {

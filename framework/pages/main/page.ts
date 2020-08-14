@@ -8,9 +8,5 @@ class MainPage extends BasePage {
     super(".wrapper", "Main Page");
     this.table = this.initChild(TableFragment, ":nth-child(3) > :nth-child(6)", "Header");
   }
-
-  async getTableCellText() {
-    return await this.table.cell.getText();
-  }
 }
 export { MainPage };
