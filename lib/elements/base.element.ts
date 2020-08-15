@@ -1,4 +1,4 @@
-import { Element, ElementArray } from "webdriverio";
+import { Element } from "webdriverio";
 import { wait } from "../element_utils";
 
 abstract class BaseElement {

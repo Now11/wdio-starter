@@ -18,14 +18,14 @@ abstract class BasePage {
   }
 
   protected getChildElement(selector: string) {
-    return async (): Promise<WebdriverIO.Element> => {
+    return async (): Promise<Element> => {
       await this.initElem();
       return await this.element.$(selector);
     };
   }
 
-  protected initChild(childClass, selector: string, name: string, isArr: boolean = false, ...args) {
-    return new childClass(this.getChildElement(selector), name, { isArr }, ...args);
+  protected initChild(childClass, selector: string, name: string, ...args) {
+    return new childClass(this.getChildElement(selector), name, ...args);
   }
 }
 export { BasePage };

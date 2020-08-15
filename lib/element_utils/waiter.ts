@@ -16,4 +16,11 @@ const wait = {
   },
 };
 
+const waitArr = {
+  forVisible: async (ctx) => {
+    const { element, name }: IElement = ctx;
+    await element.waitForDisplayed({ timeout: 1000, timeoutMsg: `Element ${name} should be visible` });
+  },
+};
+
 export { wait };
