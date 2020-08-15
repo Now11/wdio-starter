@@ -1,5 +1,4 @@
 import { Element, ElementArray } from "webdriverio";
-
 abstract class BaseFragment {
   private root: () => Promise<Element>;
   private name: string;
@@ -27,9 +26,9 @@ abstract class BaseFragment {
       root: async (): Promise<Element | ElementArray> => {
         await this.initCurrentElement();
         if (this.isChildArr) {
-          return ((await this.element.$$(selector)) as unknown) as Promise<ElementArray>;
+          return (await this.element.$$(selector)) as ElementArray;
         }
-        return ((await this.element.$(selector)) as unknown) as Promise<Element>;
+        return (await this.element.$(selector)) as Element;
       },
       name,
       isChildArr,
