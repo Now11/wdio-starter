@@ -1,8 +1,8 @@
 import { BaseElement } from "./base.element";
 
 class InputElement extends BaseElement {
-  constructor(root, name) {
-    super(root, name);
+  constructor({ root, name }) {
+    super({ root, name });
   }
 
   async getText() {

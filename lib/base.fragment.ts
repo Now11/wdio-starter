@@ -6,35 +6,38 @@ abstract class BaseFragment {
   protected element: Element;
   private isChildArr: boolean;
 
-  constructor(currentElementFn: () => Promise<Element>, name: string = BaseFragment.name, isChildArr = false) {
-    this.root = currentElementFn;
-    this.name = name;
-    this.isChildArr = isChildArr;
+  constructor({ root, name, isChildArr }: { root: () => Promise<Element>; name: string; isChildArr: boolean }) {
+    this.root = root;
+    this.name = name ? name : BaseFragment.name;
+    this.isChildArr = isChildArr ? isChildArr : false;
   }
 
   private async initCurrentElement() {
-    const el = await this.root();
-    await el.waitForExist({ timeout: 5000, timeoutMsg: `${this.name} fragment does not exist` });
-    this.element = el;
+    const element = await this.root();
+    await element.waitForExist({ timeout: 5000, timeoutMsg: `${this.name} fragment does not exist` });
   }
 
   get fragmentName() {
     return this.name;
   }
 
-  private getChildElement(selector: string) {
-    return async (): Promise<Element | ElementArray> => {
-      await this.initCurrentElement();
-      if (this.isChildArr) {
-        return ((await this.element.$$(selector)) as unknown) as Promise<ElementArray>;
-      }
-      return ((await this.element.$(selector)) as unknown) as Promise<Element>;
+  private getChildElement(selector: string, name: string, isChildArr: boolean) {
+    this.isChildArr = isChildArr;
+    return {
+      root: async (): Promise<Element | ElementArray> => {
+        await this.initCurrentElement();
+        if (this.isChildArr) {
+          return ((await this.element.$$(selector)) as unknown) as Promise<ElementArray>;
+        }
+        return ((await this.element.$(selector)) as unknown) as Promise<Element>;
+      },
+      name,
+      isChildArr,
     };
   }
 
   protected initChild(childClass, selector: string, name: string, { isChildArr } = { isChildArr: false }, ...args) {
-    this.isChildArr = isChildArr;
-    return new childClass(this.getChildElement(selector), name, { isChildArr }, ...args);
+    return new childClass(this.getChildElement(selector, name, isChildArr), ...args);
   }
 }
 

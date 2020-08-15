@@ -1,18 +1,18 @@
-import { BaseElement } from "./base.element";
-import { Element, ElementArray } from "webdriverio";
+import { ElementArray } from "webdriverio";
+import { wait } from "../element_utils";
 
 class ArrayElement {
   private root: () => Promise<ElementArray>;
   private name: string;
-  private elements: ElementArray;
-  constructor(root, name) {
+  private element: ElementArray;
+  constructor({ root, name }: { root: () => Promise<ElementArray>; name: string }) {
     this.root = root;
     this.name = name;
   }
 
   protected async initElementList() {
-    this.elements = await this.root();
-    return this.elements;
+    this.element = await this.root();
+    await wait.forListToNotEmpty(this);
   }
 
   get list() {
@@ -23,15 +23,10 @@ class ArrayElement {
     return this.name;
   }
 
-  // async waitForExist() {
-  //   await this.initCurrentElement();
-  //   await wait.forExist(this);
-  // }
-
-  // async waitForVisible() {
-  //   await this.initCurrentElement();
-  //   await wait.forVisible(this);
-  // }
+  async get(index: number) {
+    await this.initElementList();
+    return this.element[index];
+  }
 
   // async click() {
   //   await this.waitForVisible();

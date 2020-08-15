@@ -1,23 +1,20 @@
 import { Element } from "webdriverio";
 import { wait } from "../element_utils";
+import { BaseFragment } from "../base.fragment";
 
 abstract class BaseElement {
-  protected root: () => Promise<Element>;
+  private root: () => Promise<Element>;
   protected name: string;
-  element: Element;
+  protected element: Element;
 
-  constructor(rootFragment: () => Promise<Element>, name?: string) {
-    this.root = rootFragment;
-    this.name = name || BaseElement.name;
+  constructor({ root, name }: { root: () => Promise<Element>; name: string }) {
+    this.root = root;
+    this.name = name ? name : BaseElement.name;
   }
 
   protected async initCurrentElement() {
-    this.element = await this.root();
-    return this.element;
-  }
-
-  get currentElement() {
-    return this.initCurrentElement();
+    const element = await this.root();
+    await element.waitForExist({ timeout: 5000, timeoutMsg: `${this.name} fragment does not exist` });
   }
 
   get elementName() {
@@ -26,12 +23,12 @@ abstract class BaseElement {
 
   async waitForExist() {
     await this.initCurrentElement();
-    await wait.forExist(this);
+    await wait.elementForExist(this);
   }
 
   async waitForVisible() {
     await this.initCurrentElement();
-    await wait.forVisible(this);
+    await wait.elementForVisible(this);
   }
 
   async click() {
