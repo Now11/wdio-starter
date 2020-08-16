@@ -1,5 +1,4 @@
 import { Element, ElementArray } from "webdriverio";
-import { expect } from "chai";
 
 interface IElement<T> {
   element: T;
