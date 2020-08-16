@@ -10,10 +10,6 @@ describe("describe 1", function () {
   it("test1", async function () {
     await browser.url("https://webscraper.io/test-sites/tables");
     await mainPage.table.cellText();
-  });
-
-  xit("test2", async function () {
-    await browser.url("https://webscraper.io/test-sites/tables");
-    //const text = await mainPage.getTableCellText();
+    await mainPage.header.clickLoginBtn();
   });
 });

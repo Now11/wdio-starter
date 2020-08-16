@@ -1,4 +1,5 @@
 import { Element, ElementArray } from "webdriverio";
+
 abstract class BaseFragment {
   private root: () => Promise<Element>;
   private name: string;
@@ -12,8 +13,7 @@ abstract class BaseFragment {
   }
 
   private async initCurrentElement() {
-    const element = await this.root();
-    await element.waitForExist({ timeout: 5000, timeoutMsg: `${this.name} fragment does not exist` });
+    this.element = await this.root();
   }
 
   get fragmentName() {

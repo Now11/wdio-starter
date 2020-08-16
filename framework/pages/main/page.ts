@@ -1,12 +1,13 @@
 import { BasePage } from "../../../lib";
-import { TableFragment } from "./fragments";
+import { TableFragment, HeaderFragment } from "./fragments";
 
 class MainPage extends BasePage {
   table: TableFragment;
-
+  header: HeaderFragment;
   constructor() {
-    super(".wrapper", "Main Page");
-    this.table = this.initChild(TableFragment, ":nth-child(3) > :nth-child(6)", "Header");
+    super("body", "Main Page");
+    this.table = this.initChild(TableFragment, ".wrapper :nth-child(3) > :nth-child(6)", "Header");
+    this.header = this.initChild(HeaderFragment, ".navbar", "Header fragment");
   }
 }
 export { MainPage };

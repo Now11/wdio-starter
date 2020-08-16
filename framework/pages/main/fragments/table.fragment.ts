@@ -1,7 +1,5 @@
-import { BaseFragment } from "../../../../lib";
-import { TextElement, ArrayElement } from "../../../../lib";
-import { expect } from "chai";
-
+import { BaseFragment, ArrayElement, Log } from "../../../../lib";
+@Log
 class TableFragment extends BaseFragment {
   cell: ArrayElement;
 
@@ -12,7 +10,7 @@ class TableFragment extends BaseFragment {
 
   async cellText() {
     const list1 = await this.cell.get(2);
-    console.log(await list1.getText());
+    await list1.getText();
   }
 }
 export { TableFragment };
