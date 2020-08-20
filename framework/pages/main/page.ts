@@ -6,8 +6,12 @@ class MainPage extends BasePage {
   header: HeaderFragment;
   constructor() {
     super("body", "Main Page");
-    this.table = this.initChild(TableFragment, ".wrapper :nth-child(3) > :nth-child(6)", "Header");
+    this.table = this.initChild(TableFragment, ".wrapper :nth-child(3) > :nth-child(6)", "Table fragment");
     this.header = this.initChild(HeaderFragment, ".navbar", "Header fragment");
+  }
+
+  async gg() {
+    console.log(this.pageName);
   }
 }
 export { MainPage };

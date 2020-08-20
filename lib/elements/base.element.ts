@@ -21,12 +21,12 @@ abstract class BaseElement {
 
   async waitForExist() {
     await this.initCurrentElement();
-    await wait.elementForExist(this);
+    await wait.element.toExist(this);
   }
 
   async waitForVisible() {
     await this.initCurrentElement();
-    await wait.elementForVisible(this);
+    await wait.element.toBeVisible(this);
   }
 
   async click() {

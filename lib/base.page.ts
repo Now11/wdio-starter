@@ -12,26 +12,20 @@ abstract class BasePage {
 
   private async initCurrentElement() {
     this.element = await $(this.root);
-    // await element.waitForExist({ timeout: 5000, timeoutMsg: `${this.name} does not exist` });
   }
 
-  async waitForExist() {
-    await this.initCurrentElement();
-    await wait.elementForExist(this);
+  protected get pageName() {
+    return this.name;
   }
-
-  protected getChildElement(selector: string, name: string) {
-    return {
-      root: async (): Promise<Element> => {
-        await this.initCurrentElement();
-        return await this.element.$(selector);
-      },
-      name,
+  private getChildElement(selector: string) {
+    return async (): Promise<Element> => {
+      await this.initCurrentElement();
+      return await this.element.$(selector);
     };
   }
 
   protected initChild(childClass, selector: string, name: string, ...args) {
-    return new childClass(this.getChildElement(selector, name), ...args);
+    return new childClass({ root: this.getChildElement(selector), name }, ...args);
   }
 }
 export { BasePage };

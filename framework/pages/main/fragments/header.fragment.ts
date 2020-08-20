@@ -1,10 +1,10 @@
-import { BaseFragment, ButtonElement, Log } from "../../../../lib";
-@Log
+import { BaseFragment, ButtonElement } from "../../../../lib";
+
 class HeaderFragment extends BaseFragment {
   loginBtn: ButtonElement;
 
-  constructor({ root, name, isChildArr }) {
-    super({ root, name, isChildArr });
+  constructor({ root, name }) {
+    super({ root, name });
     this.loginBtn = this.initChild(ButtonElement, "a.btn-menu2", "Login button");
   }
 
