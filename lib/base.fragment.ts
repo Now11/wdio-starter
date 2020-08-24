@@ -27,6 +27,7 @@ abstract class BaseFragment {
       if (this.isChildArr) {
         return (await this.element.$$(selector)) as ElementArray;
       }
+
       return (await this.element.$(selector)) as Element;
     };
   }
