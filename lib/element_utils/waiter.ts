@@ -9,6 +9,7 @@ const wait = {
   elementForVisible: async (ctx) => {
     const { element, name }: IElement<Element> = ctx;
     await element.waitForDisplayed({ timeout: 1000, timeoutMsg: `Element ${name} should be visible` });
+
   },
   elementForExist: async (ctx) => {
     const { element, name }: IElement<Element> = ctx;
@@ -21,8 +22,9 @@ const wait = {
       async () => {
         return element.length > 0;
       },
-      { timeout: 5000, interval: 200, timeoutMsg: `${name} elements list is empty` }
+      { timeout: 5000, interval: 200, timeoutMsg: `${name} is empty` }
     );
+
   },
 };
 

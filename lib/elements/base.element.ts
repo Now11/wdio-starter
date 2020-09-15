@@ -1,5 +1,5 @@
 import { Element } from "webdriverio";
-import { wait } from "../element_utils";
+import { wait, step } from "../element_utils";
 
 abstract class BaseElement {
   private root: () => Promise<Element>;
@@ -29,6 +29,7 @@ abstract class BaseElement {
     await wait.elementForVisible(this);
   }
 
+  @step((name) => `${name} execute click`)
   async click() {
     await this.waitForVisible();
     await this.element.click();
@@ -39,6 +40,7 @@ abstract class BaseElement {
     await this.element.setValue(keys);
   }
 
+  @step((name) => `${name} execute get text`)
   async getText() {
     await this.waitForVisible();
     return await this.element.getText();

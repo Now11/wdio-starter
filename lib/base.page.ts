@@ -1,5 +1,5 @@
 import { Element } from "webdriverio";
-import { wait } from "./element_utils";
+import { wait, step } from "./element_utils";
 
 abstract class BasePage {
   private root: string;

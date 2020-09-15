@@ -1,5 +1,13 @@
 require("ts-node").register({ files: true });
 
+const path = require('path');
+const fs = require('fs');
+const ROOT_DIR = path.resolve(__dirname);
+const SPECS_DIR = path.join(ROOT_DIR, 'specs');
+const OUTPUT_DIR = path.join(ROOT_DIR, 'output');
+const SCREENSHOT_DIR = path.join(OUTPUT_DIR, 'screenshots');
+
+
 exports.config = {
   runner: "local",
   path: "/wd/hub",
@@ -23,9 +31,42 @@ exports.config = {
   connectionRetryCount: 3,
   services: ["selenium-standalone"],
   framework: "mocha",
-  reporters: ["spec"],
+  reporters: ["spec",
+    ["allure", {
+      outputDir: "allure-results",
+      disableMochaHooks: true,
+      disableWebdriverScreenshotsReporting: false,
+      disableWebdriverStepsReporting: false,
+    }
+    ]
+  ],
   mochaOpts: {
     ui: "bdd",
     timeout: 60000,
   },
+  outputDir: OUTPUT_DIR,
+  screenshotPath: SCREENSHOT_DIR,
+  onPrepare: function (config, capabilities) {
+    if (!fs.existsSync(SCREENSHOT_DIR)) {
+      fs.mkdirSync(SCREENSHOT_DIR);
+    }
+  },
+  // afterTest: async function (
+  //   test,
+  //   context, { error, result, duration, passed, retries }
+  // ) {
+
+  //   if (error) {
+  //     const filename = encodeURIComponent(test.title.replace(/\s+/g, '-'));
+  //     const filePath = SCREENSHOT_DIR + `/${filename}.png`;
+  //     await browser.saveScreenshot(filePath);
+  //     console.log('\n\tScreenshot location:', filePath, '\n');
+  //   }
+  // },
+
+  afterStep: async function (test, context, { error, result, duration, passed, retries }) {
+    if (error) {
+      await browser.takeScreenshot();
+    }
+  }
 };

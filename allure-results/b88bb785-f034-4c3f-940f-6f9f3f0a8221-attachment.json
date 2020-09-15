@@ -1,0 +1,4 @@
+{
+  "using": "css selector",
+  "value": "tbody > :first-child td1"
+}

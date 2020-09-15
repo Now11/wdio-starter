@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/wdio wdio.conf.js"
+    "test": "./node_modules/.bin/wdio wdio.conf.js",
+    "allure": "npx allure generate & allure open"
   },
   "keywords": [],
   "author": "",
@@ -13,11 +14,14 @@
     "@types/chai": "^4.2.12",
     "@types/mocha": "^8.0.1",
     "@types/node": "^14.0.27",
+    "@wdio/allure-reporter": "^6.4.7",
     "@wdio/cli": "^6.1.24",
     "@wdio/local-runner": "^6.1.24",
     "@wdio/mocha-framework": "^6.1.19",
     "@wdio/selenium-standalone-service": "^6.1.14",
     "@wdio/spec-reporter": "^6.1.23",
+    "allure-commandline": "^2.13.0",
+    "allure-mocha": "^2.0.0-beta.8",
     "chai": "^4.2.0",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.7",

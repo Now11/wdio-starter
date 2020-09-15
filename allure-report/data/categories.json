@@ -1,0 +1,39 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "name" : "categories",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "Table cells is empty",
+      "children" : [ {
+        "name" : "test1",
+        "uid" : "edc486c85dccd907",
+        "parentUid" : "a80bc38325d0c933e2643f64003ec87a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1600204991283,
+          "stop" : 1600205001360,
+          "duration" : 10077
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-85.0.4183.102" ]
+      }, {
+        "name" : "test2",
+        "uid" : "4cd232e2f7ab4280",
+        "parentUid" : "a80bc38325d0c933e2643f64003ec87a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1600205001361,
+          "stop" : 1600205011043,
+          "duration" : 9682
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "chrome-85.0.4183.102" ]
+      } ],
+      "uid" : "a80bc38325d0c933e2643f64003ec87a"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ]
+}

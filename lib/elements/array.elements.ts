@@ -1,5 +1,5 @@
 import { ElementArray } from "webdriverio";
-import { wait } from "../element_utils";
+import { wait, step } from "../element_utils";
 
 class ArrayElement {
   private root: () => Promise<ElementArray>;
@@ -26,6 +26,12 @@ class ArrayElement {
   async get(index: number) {
     await this.initElementList();
     return this.element[index];
+  }
+
+  @step(name => `${name} execute get element text`)
+  async getText(index: number) {
+    const el = await this.get(index)
+    return await el.getText();
   }
 
   // async click() {

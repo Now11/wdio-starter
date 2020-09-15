@@ -1,16 +1,16 @@
-import { BaseFragment, ArrayElement, Log } from "../../../../lib";
-@Log
+import { BaseFragment, ArrayElement } from "../../../../lib";
+
 class TableFragment extends BaseFragment {
   cell: ArrayElement;
 
   constructor({ root, name, isChildArr }) {
     super({ root, name, isChildArr });
-    this.cell = this.initChild(ArrayElement, "tbody > :first-child td", "Table cells", { isChildArr: true });
+    this.cell = this.initChild(ArrayElement, "tbody > :first-child td1", "Table cells", { isChildArr: true });
   }
 
-  async cellText() {
-    const list1 = await this.cell.get(2);
-    await list1.getText();
+  async cellText(index: number) {
+    return await this.cell.getText(index);
+
   }
 }
 export { TableFragment };
