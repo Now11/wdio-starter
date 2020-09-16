@@ -24,8 +24,18 @@ const wait = {
       },
       { timeout: 5000, interval: 200, timeoutMsg: `${name} is empty` }
     );
-
   },
+
+  listElementForVisible: async ({ ctx, index }) => {
+    const { element, name }: IElement<ElementArray> = ctx;
+    await element[index].waitForDisplayed({ timeout: 5000, timeoutMsg: `Element ${name} should be visible` });
+  },
+
+  listElementForExist: async ({ ctx, index }) => {
+    const { element, name }: IElement<ElementArray> = ctx;
+    await element[index].waitForDisplayed({ timeout: 5000, timeoutMsg: `Element ${name} should exist` });
+  },
+
 };
 
 export { wait };

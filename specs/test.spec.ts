@@ -3,12 +3,12 @@ import { expect } from "chai"
 
 const { pages, _browser } = provider;
 
-const loginUrl = "https://cloud.webscraper.io/login1"
+const loginUrl = "https://cloud.webscraper.io/login"
 
 
 const mainPage = provider.pages.main()
 describe("describe 1", function () {
-  beforeEach(async () => {
+  afterEach(async () => {
     await _browser.reloadSession();
   });
 
@@ -22,8 +22,8 @@ describe("describe 1", function () {
 
   it("test2", async function () {
     await _browser.url("https://webscraper.io/test-sites/tables");
-    const textEl2 = await mainPage.table.cellText(3);
-    expect(textEl2).be.eql("Potter", "Text cell doesn't match with expected value");
+    const textEl2 = await mainPage.cellText(3);
+    expect(textEl2).be.eql("@hp", "Text cell doesn't match with expected value");
     await mainPage.header.clickLoginBtn();
     expect(await _browser.getCurrentUrl()).be.eql("https://cloud.webscraper.io/login", "Url doesn't match");
   });

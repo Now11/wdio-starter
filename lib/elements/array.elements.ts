@@ -10,43 +10,42 @@ class ArrayElement {
     this.name = name;
   }
 
+  get elementName() {
+    return this.name;
+  }
+
   protected async initElementList() {
     this.element = await this.root();
     await wait.forListToNotEmpty(this);
   }
 
-  get list() {
-    return this.initElementList();
-  }
-
-  get elementName() {
-    return this.name;
-  }
-
-  async get(index: number) {
+  private async waitForVisible(index: number) {
     await this.initElementList();
-    return this.element[index];
+    await wait.listElementForVisible({ ctx: this, index })
   }
+
+  private async waitForExist(index) {
+    await this.initElementList();
+    await wait.listElementForExist({ ctx: this, index })
+  }
+
 
   @step(name => `${name} execute get element text`)
   async getText(index: number) {
-    const el = await this.get(index)
-    return await el.getText();
+    await this.waitForExist(index);
+    return await this.element[index].getText();
   }
 
-  // async click() {
-  //   await this.waitForVisible();
-  //   await this.element.click();
-  // }
+  @step(name => `${name} execute click`)
+  async click(index: number) {
+    await this.waitForVisible(index);
+    await this.element[index].click();
+  }
 
-  // async sendKeys(keys: string) {
-  //   await this.waitForVisible();
-  //   await this.element.setValue(keys);
-  // }
-
-  // async getText() {
-  //   await this.waitForVisible();
-  //   return await this.element.getText();
-  // }
+  @step(name => `${name} execute sendKeys`)
+  async sendKeys({ index, keys }: { index: number, keys: string }) {
+    await this.waitForVisible(index);
+    await this.element[index].setValue(keys);
+  }
 }
 export { ArrayElement };

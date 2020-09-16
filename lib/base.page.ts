@@ -12,12 +12,6 @@ abstract class BasePage {
 
   private async initCurrentElement() {
     this.element = await $(this.root);
-    // await element.waitForExist({ timeout: 5000, timeoutMsg: `${this.name} does not exist` });
-  }
-
-  async waitForExist() {
-    await this.initCurrentElement();
-    await wait.elementForExist(this);
   }
 
   protected getChildElement(selector: string, name: string) {

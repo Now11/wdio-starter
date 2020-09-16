@@ -1,5 +1,6 @@
-import { BaseFragment, ButtonElement } from "../../../../lib";
+import { BaseFragment, ButtonElement, Log } from "../../../../lib";
 
+@Log
 class HeaderFragment extends BaseFragment {
   loginBtn: ButtonElement;
 

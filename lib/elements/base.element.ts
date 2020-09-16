@@ -35,6 +35,7 @@ abstract class BaseElement {
     await this.element.click();
   }
 
+  @step((name) => `${name} execute sendKeys`)
   async sendKeys(keys: string) {
     await this.waitForVisible();
     await this.element.setValue(keys);

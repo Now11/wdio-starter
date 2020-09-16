@@ -1,70 +1,41 @@
-// function decorateService(target) {
-//   console.log(Object.getOwnPropertyNames(target.prototype.constructor));
-//   const methods = Object.getOwnPropertyNames(target.prototype)
-//     .filter((method) => method !== "constructor")
-//     .filter((method) => typeof target.prototype[method] === "function");
+import { stepAllure, stepMethodAllure } from './allure';
 
-//   methods.forEach((method) => {
-//     const fn = target.prototype[method];
-//     target.prototype[method] = function (...args) {
-//       console.log(`${target.prototype.constructor.name} call method ${method}`);
-//       return fn.call(this, ...args);
-//     };
-//   });
-// }
+function decorateService(target) {
+  const originalMethods = Object.getOwnPropertyNames(target.prototype)
+    .filter((method) => method !== "constructor")
+    .filter((method) => typeof target.prototype[method] === "function");
 
-// export { decorateService as Log };
-
-//TO DO: Step Decorator
-
-// function step(stepName: string | Function) {
-//   return function (_target, _name, descriptor) {
-//     const originalValue = descriptor.value;
-
-//     descriptor.value = function (...args) {
-//       stepName = "\n" + ((typeof stepName === "string" ? stepName : stepName(this.name)) as string);
-//       if (this.constructor.name.includes("Fragment")) {
-//         stepName = `\t ${stepName} arguments ${JSON.stringify(args)}`;
-//       }
-//       console.log(stepName);
-//       return originalValue.call(this, ...args);
-//     };
-
-//     return descriptor;
-//   };
-// }
-
-// export { step };
-
-
-import { stepAllure, attachScreenshot, attachJsonData } from './allure';
-
+  originalMethods.forEach((method) => {
+    const fn = target.prototype[method];
+    target.prototype[method] = function (...args) {
+      const localStepName = `${target.prototype.constructor.name} call method ${method}`;
+      return stepMethodAllure(localStepName, fn.bind(this, ...args))
+    };
+  });
+}
 
 function step(stepName: string | Function) {
   return function (_target, _name, descriptor) {
-    const originalValue = descriptor.value;
+    const currValue = descriptor.value;
 
     descriptor.value = function (...args) {
-      let localStepName = stepName;
-      localStepName = '\n' + ((typeof localStepName === 'string' ? localStepName : localStepName(this.name)) as string);
-      const _args = args.length !== 0 ? `arguments ${JSON.stringify(args)}` : ''
+      let cuurentStepName = stepName;
+      cuurentStepName = '\n' + ((typeof cuurentStepName === 'string' ? cuurentStepName : cuurentStepName(this.name)) as string);
+      const currArgs = args.length !== 0 ? `arguments ${JSON.stringify(args)}` : ''
       if (this.constructor.name.includes('Element')) {
-        localStepName = `\t ${localStepName}  ${_args}`
-        // allure.addArgument(args) TO DO: try yo use allure to attache arguments
+        cuurentStepName = `\t ${cuurentStepName} ${currArgs}`
       }
 
       if (this.constructor.name.includes('Browser')) {
-        localStepName = `${localStepName}  ${args[0] ? args[0] : ''}`
+        cuurentStepName = `${cuurentStepName} ${args[0] ? args[0] : ''}`
       }
-      return stepAllure(localStepName, originalValue.bind(this, ...args));
+      return stepAllure(cuurentStepName, currValue.bind(this, ...args));
     }
-
     return descriptor;
   }
 }
 
 export {
   step,
-  attachScreenshot,
-  attachJsonData
+  decorateService as Log
 }
