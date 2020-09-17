@@ -1,5 +1,5 @@
-import { ElementArray } from "webdriverio";
-import { wait, step } from "../element_utils";
+import { ElementArray } from 'webdriverio';
+import { wait, step } from '../element_utils';
 
 class ArrayElement {
   private root: () => Promise<ElementArray>;
@@ -21,29 +21,28 @@ class ArrayElement {
 
   private async waitForVisible(index: number) {
     await this.initElementList();
-    await wait.listElementForVisible({ ctx: this, index })
+    await wait.listElementForVisible({ ctx: this, index });
   }
 
   private async waitForExist(index) {
     await this.initElementList();
-    await wait.listElementForExist({ ctx: this, index })
+    await wait.listElementForExist({ ctx: this, index });
   }
 
-
-  @step(name => `${name} execute get element text`)
+  @step((name) => `${name} execute get element text`)
   async getText(index: number) {
     await this.waitForExist(index);
     return await this.element[index].getText();
   }
 
-  @step(name => `${name} execute click`)
+  @step((name) => `${name} execute click`)
   async click(index: number) {
     await this.waitForVisible(index);
     await this.element[index].click();
   }
 
-  @step(name => `${name} execute sendKeys`)
-  async sendKeys({ index, keys }: { index: number, keys: string }) {
+  @step((name) => `${name} execute sendKeys`)
+  async sendKeys({ index, keys }: { index: number; keys: string }) {
     await this.waitForVisible(index);
     await this.element[index].setValue(keys);
   }

@@ -1,4 +1,4 @@
-import { Element, ElementArray } from "webdriverio";
+import { Element, ElementArray } from 'webdriverio';
 
 abstract class BaseFragment {
   private root: () => Promise<Element>;
