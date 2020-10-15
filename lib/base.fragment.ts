@@ -1,37 +1,42 @@
-import { Element } from "webdriverio";
+import { Element, ElementArray } from 'webdriverio';
 
 abstract class BaseFragment {
-  private currentElementFn: () => Promise<Element>;
+  private root: () => Promise<Element>;
   private name: string;
-  private element: Element;
+  protected element: Element;
+  private isArr: boolean;
 
-  constructor(currentElementFn: () => Promise<Element>, name?: string) {
-    this.currentElementFn = currentElementFn;
-    this.name = name || BaseFragment.name;
+  constructor({ root, name, isArr }: { root: () => Promise<Element>; name: string; isArr?: boolean }) {
+    this.root = root;
+    this.name = name ? name : BaseFragment.name;
+    this.isArr = isArr ? isArr : false;
   }
 
   private async initCurrentElement() {
-    const el = await this.currentElementFn();
-    await el.waitForExist({ timeout: 5000, timeoutMsg: `${this.name} fragment does not exist` });
-    this.element = el;
+    this.element = await this.root();
   }
 
-  get fragmentName() {
+  protected get fragmentName() {
     return this.name;
   }
 
-  private getChildElement(selector: string, name: string, elemArr: boolean) {
-    return async () => {
-      await this.initCurrentElement();
-      if (elemArr) {
-        return await this.element.$$(selector);
-      }
-      return await this.element.$(selector);
+  private getChildElement(selector: string, name: string, isArr: boolean) {
+    this.isArr = isArr;
+    return {
+      root: async (): Promise<Element | ElementArray> => {
+        await this.initCurrentElement();
+        if (this.isArr) {
+          return (await this.element.$$(selector)) as ElementArray;
+        }
+        return (await this.element.$(selector)) as Element;
+      },
+      name,
+      isArr,
     };
   }
 
-  protected initChild(childClass, selector: string, name: string, { elemArr } = { elemArr: false }, ...args) {
-    return new childClass(this.getChildElement(selector, name, elemArr), ...args);
+  protected initChild(childClass, selector: string, name: string, { isArr } = { isArr: false }, ...args) {
+    return new childClass(this.getChildElement(selector, name, isArr), ...args);
   }
 }
 

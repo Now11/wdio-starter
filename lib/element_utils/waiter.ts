@@ -1,19 +1,41 @@
-import { Element } from "webdriverio";
+import { Element, ElementArray } from "webdriverio";
 
-interface IElement {
-  element: Element;
+interface IElement<T> {
+  element: T;
   name: string;
 }
 
 const wait = {
-  forVisible: async (ctx) => {
-    const { element, name }: IElement = ctx;
+  elementForVisible: async (ctx) => {
+    const { element, name }: IElement<Element> = ctx;
     await element.waitForDisplayed({ timeout: 1000, timeoutMsg: `Element ${name} should be visible` });
+
   },
-  forExist: async (ctx) => {
-    const { element, name }: IElement = ctx;
+  elementForExist: async (ctx) => {
+    const { element, name }: IElement<Element> = ctx;
     await element.waitForExist({ timeout: 5000, timeoutMsg: `Element ${name} should exist` });
   },
+
+  forListToNotEmpty: async (ctx) => {
+    const { element, name }: IElement<ElementArray> = ctx;
+    await browser.waitUntil(
+      async () => {
+        return element.length > 0;
+      },
+      { timeout: 5000, interval: 200, timeoutMsg: `${name} is empty` }
+    );
+  },
+
+  listElementForVisible: async ({ ctx, index }) => {
+    const { element, name }: IElement<ElementArray> = ctx;
+    await element[index].waitForDisplayed({ timeout: 5000, timeoutMsg: `Element ${name} should be visible` });
+  },
+
+  listElementForExist: async ({ ctx, index }) => {
+    const { element, name }: IElement<ElementArray> = ctx;
+    await element[index].waitForDisplayed({ timeout: 5000, timeoutMsg: `Element ${name} should exist` });
+  },
+
 };
 
 export { wait };

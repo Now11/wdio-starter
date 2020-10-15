@@ -1,14 +1,15 @@
-import { Element, ElementArray } from "webdriverio";
-import { wait } from "../element_utils";
+import { Element } from 'webdriverio';
+import { wait} from '../element_utils';
+import {step} from "../report"
 
 abstract class BaseElement {
-  protected root: () => Promise<Element>;
+  private root: () => Promise<Element>;
   protected name: string;
   protected element: Element;
 
-  constructor(rootFragment: () => Promise<Element>, name?: string) {
-    this.root = rootFragment;
-    this.name = name || BaseElement.name;
+  constructor({ root, name }: { root: () => Promise<Element>; name?: string }) {
+    this.root = root;
+    this.name = name ? name : BaseElement.name;
   }
 
   protected async initCurrentElement() {
@@ -21,24 +22,27 @@ abstract class BaseElement {
 
   async waitForExist() {
     await this.initCurrentElement();
-    await wait.forExist(this);
+    await wait.elementForExist(this);
   }
 
   async waitForVisible() {
     await this.initCurrentElement();
-    await wait.forVisible(this);
+    await wait.elementForVisible(this);
   }
 
+  @step((name) => `${name} execute click`)
   async click() {
     await this.waitForVisible();
     await this.element.click();
   }
 
+  @step((name) => `${name} execute sendKeys`)
   async sendKeys(keys: string) {
     await this.waitForVisible();
     await this.element.setValue(keys);
   }
 
+  @step((name) => `${name} execute get text`)
   async getText() {
     await this.waitForVisible();
     return await this.element.getText();

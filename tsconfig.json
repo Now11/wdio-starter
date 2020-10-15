@@ -3,10 +3,17 @@
     "target": "es2018",
     "sourceMap": true,
     "module": "commonjs",
-    "outDir": "built",
+    "outDir": "./dist",
     "experimentalDecorators": true,
-    "typeRoots": ["./lib/commands/**/*.ts"],
-    "types": ["node", "webdriverio", "@wdio/mocha-framework", "@wdio/selenium-standalone-service"]
+    "types": [
+      "node",
+      "webdriverio",
+      "@wdio/mocha-framework"
+    ]
   },
-  "include": ["./specs/**/**.ts", "./pages/**/**.ts", "./lib"]
+  "include": [
+    "./specs",
+    "./src",
+    "./lib",
+  ]
 }
