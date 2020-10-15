@@ -1,4 +1,3 @@
-require('ts-node').register({ files: true });
 const {  startStep, endStep } = require('@wdio/allure-reporter').default;
 const path = require('path');
 const fs = require('fs');
@@ -25,7 +24,9 @@ exports.config = {
   bail: 0,
   baseUrl: '',
   waitforTimeout: 10000,
+
   connectionRetryTimeout: 120000,
+
   connectionRetryCount: 3,
   services: ['selenium-standalone'],
   framework: 'mocha',
@@ -44,6 +45,25 @@ exports.config = {
   mochaOpts: {
     ui: 'bdd',
     timeout: 60000,
+    require: "ts-node/register",
+  },
+
+  waitforTimeout: 3000,
+
+  screenshotPath: path.join(OUTPUT_DIR, "screenshots"),
+
+  coloredLogs: true,
+
+  afterTest: async function (test, context, { error }) {
+    if (error) {
+      if (!fs.existsSync(SCREENSHOT_DIR)) {
+        fs.mkdirSync(SCREENSHOT_DIR);
+      }
+
+      const filename = encodeURIComponent(test.title.replace(/\s+/g, "-"));
+      const filePath = SCREENSHOT_DIR + `/${filename}.png`;
+      await browser.saveScreenshot(filePath);
+    }
   },
   outputDir: OUTPUT_DIR,
   screenshotPath: SCREENSHOT_DIR,

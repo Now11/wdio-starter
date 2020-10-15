@@ -16,7 +16,7 @@ abstract class BaseFragment {
     this.element = await this.root();
   }
 
-  get fragmentName() {
+  protected get fragmentName() {
     return this.name;
   }
 

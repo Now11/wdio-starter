@@ -11,7 +11,8 @@ function decorateService(target) {
       const localStepName = `${target.prototype.constructor.name} call method ${method}`;
       return stepMethodAllure(localStepName, fn.bind(this, ...args));
     };
-  });
+    return originalMethods;
+  })
 }
 
 function step(stepName: string | Function) {

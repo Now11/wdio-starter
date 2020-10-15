@@ -1,5 +1,6 @@
 import { ElementArray } from 'webdriverio';
-import { wait, step } from '../element_utils';
+import { wait} from '../element_utils';
+import {step} from "../report"
 
 class ArrayElement {
   private root: () => Promise<ElementArray>;
@@ -7,7 +8,7 @@ class ArrayElement {
   private element: ElementArray;
   constructor({ root, name }: { root: () => Promise<ElementArray>; name: string }) {
     this.root = root;
-    this.name = name;
+    this.name = name ? name : ArrayElement.name;
   }
 
   get elementName() {
@@ -47,4 +48,5 @@ class ArrayElement {
     await this.element[index].setValue(keys);
   }
 }
+
 export { ArrayElement };

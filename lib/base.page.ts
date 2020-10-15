@@ -13,18 +13,15 @@ abstract class BasePage {
     this.element = await $(this.root);
   }
 
-  protected getChildElement(selector: string, name: string) {
-    return {
-      root: async (): Promise<Element> => {
-        await this.initCurrentElement();
-        return await this.element.$(selector);
-      },
-      name,
+  private getChildElement(selector: string) {
+    return async (): Promise<Element> => {
+      await this.initCurrentElement();
+      return await this.element.$(selector);
     };
   }
 
   protected initChild(childClass, selector: string, name: string, ...args) {
-    return new childClass(this.getChildElement(selector, name), ...args);
+    return new childClass({ root: this.getChildElement(selector), name }, ...args);
   }
 }
 export { BasePage };
