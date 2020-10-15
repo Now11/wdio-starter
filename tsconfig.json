@@ -3,7 +3,7 @@
     "target": "es2018",
     "sourceMap": true,
     "module": "commonjs",
-    "outDir": "built",
+    "outDir": "./dist",
     "experimentalDecorators": true,
     "types": [
       "node",
@@ -13,9 +13,7 @@
   },
   "include": [
     "./specs",
-    "./framework",
+    "./src",
     "./lib",
-    "test.ts",
-    "test1.ts"
   ]
 }

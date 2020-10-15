@@ -3,9 +3,9 @@ import { BaseFragment, ArrayElement, Log } from '../../../../lib';
 class TableFragment extends BaseFragment {
   cells: ArrayElement;
 
-  constructor({ root, name, isChildArr }) {
-    super({ root, name, isChildArr });
-    this.cells = this.initChild(ArrayElement, 'tbody > :first-child td', 'Table cells', { isChildArr: true });
+  constructor({ root, name}) {
+    super({ root, name });
+    this.cells = this.initChild(ArrayElement, 'tbody > :first-child td', 'Table cells', { isArr: true });
   }
 
   async cellText(index: number) {

@@ -6,7 +6,7 @@ class ButtonElement extends BaseElement {
   }
 
   async sendKeys() {
-    throw new Error(`${this.elementName} is button, button does not have sendKeys`);
+    throw new Error(`${this.elementName} does not have sendKeys`);
   }
 }
 export { ButtonElement };

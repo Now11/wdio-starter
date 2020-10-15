@@ -1,17 +1,19 @@
-import { provider } from '../framework';
+import { shared } from '../src';
 import { expect } from 'chai';
 
-const { pages, _browser } = provider;
+const { pages, _browser } = shared;
 
-const loginUrl = 'https://cloud.webscraper.io/login1';
+const loginUrl = 'https://cloud.webscraper.io/login';
 
-const mainPage = provider.pages.main();
+const mainPage = pages.main();
+
 describe('describe 1', function () {
   afterEach(async () => {
     await _browser.reloadSession();
   });
 
-  it('test1', async function () {
+  //should pass
+  it('test 1', async function () {
     await _browser.url('https://webscraper.io/test-sites/tables');
     const textEl2 = await mainPage.table.cellText(2);
     expect(textEl2).be.eql('Potter', "Text cell doesn't match with expected value");
@@ -19,7 +21,8 @@ describe('describe 1', function () {
     expect(await _browser.getCurrentUrl()).be.eql(loginUrl, "Url doesn't match");
   });
 
-  it('test2', async function () {
+  //should fail 
+  it('test 2', async function () {
     await _browser.url('https://webscraper.io/test-sites/tables');
     const textEl2 = await mainPage.cellText(3);
     expect(textEl2).be.eql('test', "Text cell doesn't match with expected value");

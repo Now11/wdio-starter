@@ -1,11 +1,8 @@
 require('ts-node').register({ files: true });
-const { addAttachment, startStep, endStep } = require('@wdio/allure-reporter').default;
-const { ContentType } = require('allure-js-commons');
+const {  startStep, endStep } = require('@wdio/allure-reporter').default;
 const path = require('path');
 const fs = require('fs');
-const { allure } = require('allure-mocha/dist/MochaAllureReporter');
 const ROOT_DIR = path.resolve(__dirname);
-const SPECS_DIR = path.join(ROOT_DIR, 'specs');
 const OUTPUT_DIR = path.join(ROOT_DIR, 'output');
 const SCREENSHOT_DIR = path.join(OUTPUT_DIR, 'screenshots');
 
@@ -19,8 +16,8 @@ exports.config = {
     {
       browserName: 'chrome',
       'goog:chromeOptions': {
-        args: ['window-size=1960,1080', '--headless'],
-        //args: ["window-size=1960,1080"],
+        //args: ['window-size=1960,1080', '--headless'],
+        args: ["window-size=1960,1080"],
       },
     },
   ],
@@ -61,7 +58,7 @@ exports.config = {
       const currentUrl = await browser.getUrl();
       startStep(`Screenshot current url: ${currentUrl} `);
       await browser.takeScreenshot();
-      endStep('failed');
+      endStep('passed');
     }
   },
 };

@@ -1,2 +1,1 @@
-# wdio-starter
-wdio starter
+# wdio-test

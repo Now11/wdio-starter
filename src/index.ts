@@ -1,7 +1,7 @@
 import { MainPage } from "./pages";
 import { browserInterface } from "../lib";
 
-const provider = {
+const shared = {
   pages: {
     main: () => new MainPage(),
   },
@@ -10,4 +10,4 @@ const provider = {
   }
 };
 
-export { provider };
+export { shared };
