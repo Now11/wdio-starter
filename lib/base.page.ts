@@ -16,7 +16,7 @@ abstract class BasePage {
   private getChildElement(selector: string) {
     return async (): Promise<Element> => {
       await this.initCurrentElement();
-      return await this.element.$(selector);
+      return this.element.$(selector);
     };
   }
 

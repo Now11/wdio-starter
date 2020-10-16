@@ -13,10 +13,11 @@ exports.config = {
   maxInstances: 5,
   capabilities: [
     {
+      maxInstances: 3,
       browserName: 'chrome',
       'goog:chromeOptions': {
-        //args: ['window-size=1960,1080', '--headless'],
-        args: ["window-size=1960,1080"],
+        args: ['window-size=1960,1080', '--headless'],
+        //args: ["window-size=1960,1080"],
       },
     },
   ],

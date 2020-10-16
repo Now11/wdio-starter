@@ -8,17 +8,17 @@ interface IElement<T> {
 const wait = {
   elementForVisible: async (ctx) => {
     const { element, name }: IElement<Element> = ctx;
-    await element.waitForDisplayed({ timeout: 1000, timeoutMsg: `Element ${name} should be visible` });
+    return  element.waitForDisplayed({ timeout: 1000, timeoutMsg: `Element ${name} should be visible` });
 
   },
   elementForExist: async (ctx) => {
     const { element, name }: IElement<Element> = ctx;
-    await element.waitForExist({ timeout: 5000, timeoutMsg: `Element ${name} should exist` });
+    return element.waitForExist({ timeout: 5000, timeoutMsg: `Element ${name} should exist` });
   },
 
   forListToNotEmpty: async (ctx) => {
     const { element, name }: IElement<ElementArray> = ctx;
-    await browser.waitUntil(
+    return browser.waitUntil(
       async () => {
         return element.length > 0;
       },
@@ -28,12 +28,12 @@ const wait = {
 
   listElementForVisible: async ({ ctx, index }) => {
     const { element, name }: IElement<ElementArray> = ctx;
-    await element[index].waitForDisplayed({ timeout: 5000, timeoutMsg: `Element ${name} should be visible` });
+    return element[index].waitForDisplayed({ timeout: 5000, timeoutMsg: `Element ${name} should be visible` });
   },
 
-  listElementForExist: async ({ ctx, index }) => {
+  listElementToExist: async ({ ctx, index }) => {
     const { element, name }: IElement<ElementArray> = ctx;
-    await element[index].waitForDisplayed({ timeout: 5000, timeoutMsg: `Element ${name} should exist` });
+    return element[index].waitForDisplayed({ timeout: 5000, timeoutMsg: `Element ${name} should exist` });
   },
 
 };

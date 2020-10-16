@@ -6,7 +6,7 @@
   "scripts": {
     "test": "./node_modules/.bin/wdio wdio.conf.js",
     "allure": "./node_modules/.bin/allure generate & allure open",
-    "clear": "rm -rf allure-results & rm -rf allure-report"
+    "clear": "rm -rf allure-results/* & rm -rf allure-report/*"
   },
   "keywords": [],
   "author": "",

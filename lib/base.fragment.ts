@@ -16,19 +16,16 @@ abstract class BaseFragment {
     this.element = await this.root();
   }
 
-  protected get fragmentName() {
-    return this.name;
-  }
-
   private getChildElement(selector: string, name: string, isArr: boolean) {
     this.isArr = isArr;
     return {
       root: async (): Promise<Element | ElementArray> => {
         await this.initCurrentElement();
+    
         if (this.isArr) {
-          return (await this.element.$$(selector)) as ElementArray;
+          return  this.element.$$(selector) as Promise<ElementArray>;
         }
-        return (await this.element.$(selector)) as Element;
+        return this.element.$(selector) as Promise<Element>;
       },
       name,
       isArr,

@@ -27,7 +27,7 @@ class ArrayElement {
 
   private async waitForExist(index) {
     await this.initElementList();
-    await wait.listElementForExist({ ctx: this, index });
+    await wait.listElementToExist({ ctx: this, index });
   }
 
   @step((name) => `${name} execute get element text`)

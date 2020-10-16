@@ -45,7 +45,7 @@ abstract class BaseElement {
   @step((name) => `${name} execute get text`)
   async getText() {
     await this.waitForVisible();
-    return await this.element.getText();
+    return this.element.getText();
   }
 }
 

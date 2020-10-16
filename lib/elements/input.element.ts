@@ -7,7 +7,7 @@ class InputElement extends BaseElement {
 
   async getText() {
     await this.waitForExist();
-    return await this.element.getAttribute("value");
+    return this.element.getAttribute("value");
   }
 }
 export { InputElement };
