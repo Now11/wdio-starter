@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "wdio debug",
+            "request": "launch",
+            "type": "node",
+            "port": 5555,
+            "program": "${workspaceRoot}/node_modules/@wdio/cli/bin/wdio.js",
+            "args": [
+                "./wdio.conf.js",
+                "--spec",
+                "./specs/test.spec.ts"
+            ],
+            "autoAttachChildProcesses": true,
+            "env": {
+                "DEBUG": "1"
+            },
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
+        },
+    ]
+}

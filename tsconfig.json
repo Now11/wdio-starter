@@ -1,19 +1,24 @@
 {
-  "compilerOptions": {
-    "target": "es2018",
-    "sourceMap": true,
-    "module": "commonjs",
-    "outDir": "./dist",
-    "experimentalDecorators": true,
-    "types": [
-      "node",
-      "webdriverio",
-      "@wdio/mocha-framework"
+    "compilerOptions": {
+        "target": "es2018",
+        "inlineSourceMap": true,
+        "module": "commonjs",
+        "outDir": "./dist",
+        "emitDecoratorMetadata": true,
+        "allowJs": true,
+        "experimentalDecorators": true,
+        "types": [
+            "node",
+            "webdriverio",
+            "@wdio/mocha-framework"
+        ]
+    },
+    "exclude": [
+        "node_modules"
+    ],
+    "include": [
+        "./specs",
+        "./src",
+        "./lib",
     ]
-  },
-  "include": [
-    "./specs",
-    "./src",
-    "./lib",
-  ]
 }
