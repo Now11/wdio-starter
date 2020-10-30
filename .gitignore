@@ -3,5 +3,5 @@ allure-report/*
 allure-results/*
 output
 .editorconfig
-dist
+build
 Dockerfile

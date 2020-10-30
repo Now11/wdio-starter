@@ -3,7 +3,7 @@
         "target": "es2018",
         "inlineSourceMap": true,
         "module": "commonjs",
-        "outDir": "./dist",
+        "outDir": "./build",
         "emitDecoratorMetadata": true,
         "allowJs": true,
         "experimentalDecorators": true,
