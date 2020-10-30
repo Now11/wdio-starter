@@ -16,7 +16,7 @@ const config: Config = {
 		{
 			browserName: 'chrome',
 			'goog:chromeOptions': {
-				args: ['window-size=1440,960'],
+				args: ['window-size=1440,960', '--headless'],
 			},
 		},
 	],
@@ -70,7 +70,7 @@ if (process.env.DEBUG) {
 	console.log('############# RUNNING IN DEBUG MODE! ###############');
 	config.capabilities[0]['goog:chromeOptions'].args = ['window-size=1440,960'];
 	config.logLevel = 'debug';
-	config['execArgv'] = ['--inspect=127.0.0.1:5555'];
+	config['execArgv'] = ['--inspect=127.0.0.1:5252'];
 	config.mochaOpts['timeout'] = 360000;
 	config.maxInstances = 1;
 }

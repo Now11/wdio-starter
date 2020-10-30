@@ -17,7 +17,7 @@ const config: Config = {
 		{
 			browserName: 'chrome',
 			'goog:chromeOptions': {
-				args: ['window-size=1440,960'],
+				args: ['window-size=1440,960', '--headless'],
 			},
 		},
 	],

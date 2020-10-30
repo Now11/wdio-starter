@@ -5,7 +5,7 @@
             "name": "wdio debug",
             "request": "launch",
             "type": "node",
-            "port": 5555,
+            "port": 5252,
             "program": "${workspaceRoot}/node_modules/@wdio/cli/bin/wdio.js",
             "args": [
                 "./wdio.conf.js",
