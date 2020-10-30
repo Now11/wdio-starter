@@ -1,2 +1,2 @@
-export * from "./table.fragment";
-export * from "./header.fragment";
+export * from './table.fragment';
+export * from './header.fragment';

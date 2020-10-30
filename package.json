@@ -1,12 +1,11 @@
 {
-    "name": "wdio",
+    "name": "wdio-test",
     "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
     "scripts": {
         "test": "./node_modules/.bin/wdio wdio.conf.js",
         "allure": "./node_modules/.bin/allure generate & allure open",
-        "clear": "rm -rf allure-results/* & rm -rf allure-report/*"
+        "clear": "rm -rf allure-results/* & rm -rf allure-report/*",
+        "test:remote": "./node_modules/.bin/wdio wdio.remote.conf.js"
     },
     "keywords": [],
     "author": "",

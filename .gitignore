@@ -4,3 +4,4 @@ allure-results/*
 output
 .editorconfig
 dist
+Dockerfile

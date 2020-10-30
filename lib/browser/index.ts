@@ -1,19 +1,19 @@
 import { step } from '../report';
 
 class BrowserInterface {
-    @step(`Browser: navigate to URL`)
-    async url(url: string) {
-        await browser.url(url);
-    }
+	@step(`Browser: navigate to URL`)
+	async url(url: string): Promise<void> {
+		await browser.url(url);
+	}
 
-    @step(`Browser: get current URL`)
-    async getCurrentUrl() {
-        return browser.getUrl();
-    }
+	@step(`Browser: get current URL`)
+	async getCurrentUrl(): Promise<string> {
+		return browser.getUrl();
+	}
 
-    async reloadSession() {
-        await browser.reloadSession();
-    }
+	async reloadSession(): Promise<void> {
+		await browser.reloadSession();
+	}
 }
 
 const browserInterface = new BrowserInterface();
