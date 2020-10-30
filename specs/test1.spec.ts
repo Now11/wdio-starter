@@ -7,7 +7,7 @@ const URL = 'https://webscraper.io/test-sites/tables';
 const { pages, _browser } = shared;
 const mainPage = pages.main();
 
-describe('describe 2', function () {
+describe('suite 2', function () {
 	afterEach(async () => {
 		await _browser.reloadSession();
 	});
