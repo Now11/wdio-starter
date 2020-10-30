@@ -15,10 +15,5 @@
     },
     "exclude": [
         "node_modules"
-    ],
-    "include": [
-        "./specs",
-        "./src",
-        "./lib",
     ]
 }
