@@ -4,18 +4,10 @@ on:
   push:
     branches-ignore:
       - "!master"
-    
+
 jobs:          
   tests:
     runs-on: ubuntu-latest
-    services:
-      selenoid:
-        image: aerokube/selenoid:latest-release
-        ports:
-          - 4444:4444
-        volumes:
-          - /var/run/docker.sock:/var/run/docker.sock
-        
     steps:
       - name: copy
         uses: actions/checkout@v2
