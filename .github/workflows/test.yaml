@@ -5,17 +5,7 @@ on:
     branches-ignore:
       - "!master"
     
-jobs:
-  first-job:
-    name: setup env
-    runs-on: ubuntu-latest
-    services:
-      chrome:
-        image: aerokube/selenoid:latest-release
-    steps:
-      - name: test
-        run: ls
-          
+jobs:          
   second-job:
     needs: first-job
     runs-on: ubuntu-latest
