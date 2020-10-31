@@ -11,14 +11,16 @@ jobs:
     services:
       chrome:
         image: selenoid/chrome:83.0
+        ports:
+          - ""
+
       selenoid:
         image: aerokube/selenoid:latest-release
-        ports:
-          - 4444:4444
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock
-          - /src/config:/etc/selenoid/
-
+          - src/config/:/etc/selenoid/
+        ports:
+          - 4444:4444
     steps:
       - name: ps
         run: docker ps -a
