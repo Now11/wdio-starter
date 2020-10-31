@@ -18,10 +18,14 @@ jobs:
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock
           - /src/config:/etc/selenoid/
+        options:
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: ps
-        uses: docker ps -a
+        run: docker ps -a
       - name: copy
         uses: actions/checkout@v2
       - name: check
