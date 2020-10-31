@@ -10,6 +10,7 @@ const config: Config = {
 	runner: 'local',
 	path: '/wd/hub',
 	port: 4444,
+	hostname: 'localhost',
 	//hostname: '172.17.0.2', // selenoid or seleniumd node IP address
 	specs: [SPECS],
 	maxInstances: 5,
