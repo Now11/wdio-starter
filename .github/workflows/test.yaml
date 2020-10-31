@@ -15,7 +15,7 @@ jobs:
           - 4444:4444
     steps:
       - name: docker containers list
-        uses: docker ps
+        run: docker ps
       - name: copy repository
         uses: actions/checkout@v2
       - name: Install Dependencies

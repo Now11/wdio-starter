@@ -7,7 +7,6 @@ const OUTPUT_DIR = path.join(ROOT_DIR, 'output');
 const SPECS = path.join(ROOT_DIR, 'specs/**/*.spec.ts');
 
 const config: Config = {
-	//runner: 'local',
 	path: '/wd/hub',
 	port: 4444,
 	hostname: 'localhost',
