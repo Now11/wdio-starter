@@ -9,9 +9,6 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     services:
-      chrome:
-        image: selenoid/chrome:83.0
-
       selenoid:
         image: aerokube/selenoid:latest-release
         volumes:
@@ -19,6 +16,8 @@ jobs:
           - /src/config/:/etc/selenoid/
         ports:
           - 4444:4444
+      chrome:
+        image: selenoid/chrome:83.0
     steps:
       - name: ps
         run: docker ps -a
