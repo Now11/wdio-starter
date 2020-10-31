@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: copy 
         uses: actions/checkout@v2
+      - name: print
+        run: ls && run ${PWD}
     services: 
       selenoid:
         image: aerokube/selenoid:latest-release
