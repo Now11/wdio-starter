@@ -49,7 +49,7 @@ const config: Config = {
 		require: 'ts-node/register',
 	},
 
-	//outputDir: OUTPUT_DIR,
+	outputDir: OUTPUT_DIR,
 
 	afterTest: async function (test, context, { error, result, duration, passed, retries }) {
 		if (error) {
