@@ -12,11 +12,11 @@ describe('suite 2', function () {
 		await _browser.reloadSession();
 	});
 
-	//should fail
-	it('failed test', async function () {
+	//should pass
+	it('passed test', async function () {
 		await _browser.url(URL);
-		const textEl2 = await mainPage.cellText(3);
-		expect(textEl2).be.eql('test', "Text cell doesn't match with expected value");
+		const textEl2 = await mainPage.table.cellText(2);
+		expect(textEl2).be.eql('Potter', "Text cell doesn't match with expected value");
 		await mainPage.header.clickLoginBtn();
 		expect(await _browser.getCurrentUrl()).be.eql(LOGIN_URL, "Url doesn't match");
 	});
