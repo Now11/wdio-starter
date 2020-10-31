@@ -16,6 +16,7 @@ jobs:
       - name: copy
         uses: actions/checkout@v2
   second-job:
+    needs: first-job
     runs-on: ubuntu-latest
     services:
       selenoid:
