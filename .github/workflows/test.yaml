@@ -19,7 +19,7 @@ jobs:
       - name: ps
         run: docker ps
       - name: check
-        run: java --version
+        run: java -version
       - name: copy
         uses: actions/checkout@v2
       - name: Install Dependencies
