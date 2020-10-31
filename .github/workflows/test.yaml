@@ -7,7 +7,10 @@ on:
 
 jobs:          
   tests:
+    runs-on: ubuntu-latest
     services:
+      chrome:
+        image: selenoid/chrome:latest
       selenoid:
         image: aerokube/selenoid:latest-release
         ports:
@@ -15,7 +18,7 @@ jobs:
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock
           - /src/config:/etc/selenoid/
-    runs-on: ubuntu-latest
+
     steps:
       - name: copy
         uses: actions/checkout@v2
