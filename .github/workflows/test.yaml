@@ -6,27 +6,30 @@ on:
       - "!master"
     
 jobs:
-  selenoid-job:
+  first-job:
+    name: setup env
     runs-on: ubuntu-latest
+    services:
+      chrome:
+        image: aerokube/selenoid:latest-release
     steps:
-      - name: copy 
+      - name: copy
         uses: actions/checkout@v2
-      - name: print
-        run: ls
-  testjob:
+  second-job:
     runs-on: ubuntu-latest
-    needs: selenoid-job
-    services: 
+    services:
       selenoid:
         image: aerokube/selenoid:latest-release
         ports:
           - 4444:4444
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock
-          - /src/config/:/etc/selenoid/
+          - /src/config:/etc/selenoid/
     steps:
       - name: Print docker containers
         run: docker ps
+      - name: print directory
+        run: ls
       - name: Install Dependencies
         run: npm ci
       - name: run tests
