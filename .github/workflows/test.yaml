@@ -12,6 +12,10 @@ jobs:
     services:
       chrome:
         image: aerokube/selenoid:latest-release
+    steps:
+      - name: test
+        run: ls
+          
   second-job:
     needs: first-job
     runs-on: ubuntu-latest
