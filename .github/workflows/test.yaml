@@ -18,8 +18,8 @@ jobs:
     steps:
       - name: ps
         run: docker ps
-      - name: test
-        run: curl http://localhost:4444
+      - name: check
+        run: java --version
       - name: copy
         uses: actions/checkout@v2
       - name: Install Dependencies
