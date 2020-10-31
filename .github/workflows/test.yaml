@@ -12,9 +12,6 @@ jobs:
     services:
       chrome:
         image: aerokube/selenoid:latest-release
-    steps:
-      - name: copy
-        uses: actions/checkout@v2
   second-job:
     needs: first-job
     runs-on: ubuntu-latest
@@ -27,6 +24,8 @@ jobs:
           - /var/run/docker.sock:/var/run/docker.sock
           - /src/config:/etc/selenoid/
     steps:
+      - name: copy
+        uses: actions/checkout@v2
       - name: Print docker containers
         run: docker ps
       - name: print directory
