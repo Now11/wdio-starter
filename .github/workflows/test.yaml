@@ -11,8 +11,6 @@ jobs:
     services:
       chrome:
         image: selenoid/chrome:83.0
-        ports:
-          - ""
 
       selenoid:
         image: aerokube/selenoid:latest-release
