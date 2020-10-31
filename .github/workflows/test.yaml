@@ -12,7 +12,7 @@ jobs:
       - name: copy 
         uses: actions/checkout@v2
       - name: print
-        run: ls && run ${PWD}
+        run: ls
   testjob:
     runs-on: ubuntu-latest
     needs: selenoid-job
@@ -23,7 +23,7 @@ jobs:
           - 4444:4444
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock
-          - ${PWD}/wdio-test/src/config/:/etc/selenoid/
+          - ./src/config/:/etc/selenoid/
     steps:
       - name: Print docker containers
         run: docker ps
