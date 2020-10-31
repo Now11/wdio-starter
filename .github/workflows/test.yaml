@@ -16,7 +16,7 @@ jobs:
         image: aerokube/selenoid:latest-release
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock
-          - src/config/:/etc/selenoid/
+          - /src/config/:/etc/selenoid/
         ports:
           - 4444:4444
     steps:
