@@ -8,7 +8,7 @@ const SPECS = path.join(ROOT_DIR, 'specs/**/*.spec.ts');
 
 const config: Config = {
 	runner: 'local',
-	path: '/wd/hub',
+	//path: '/wd/hub',
 	port: 4444,
 	//hostname: '172.17.0.2', // selenoid or seleniumd node IP address
 	specs: [SPECS],
