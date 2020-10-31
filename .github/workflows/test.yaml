@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       chrome:
-        image: selenoid/chrome:83
+        image: selenoid/chrome:83.0
       selenoid:
         image: aerokube/selenoid:latest-release
         ports:
