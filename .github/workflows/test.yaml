@@ -18,10 +18,10 @@ jobs:
     steps:
       - name: ps
         run: docker ps
+      - name: test
+        run: curl http://localhost:4444
       - name: copy
         uses: actions/checkout@v2
-      - name: check
-        run: lsof -i
       - name: Install Dependencies
         run: npm ci
       - name: run tests
