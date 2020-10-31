@@ -1,0 +1,24 @@
+name: WebdriverIO UI Tests
+
+on: 
+  push:
+    branches-ignore:
+      - "!master"
+    
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    name: WDIO Tests
+    steps:
+      - name: copy 
+        uses: actions/checkout@v2
+      - name: pull last chrome version
+        uses: docker pull selenoid/chrome:latest
+      - name: start selenoid
+        run: docker run -d \--name selenoid \-p 4444:4444 \-v /var/run/docker.sock:/var/run/docker.sock \-v ${PWD}/src/config/:/etc/selenoid/:ro \aerokube/selenoid:latest-release
+      - name: Print docker containers
+        run: docker ps
+      - name: Install Dependencies
+        run: npm ci
+      - name: run tests
+        run: npm run test

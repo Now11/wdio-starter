@@ -56,10 +56,11 @@ const config: Config = {
 			const currentUrl = await browser.getUrl();
 			allure.startStep(`Screenshot current url: ${currentUrl} `);
 			await browser.takeScreenshot();
-			allure.endStep('passed');
+			allure.endStep('failed');
 		}
 	},
 	beforeSession: function () {
+		//wait for debugger
 		if (process.env.DEBUG) {
 			return new Promise((resolve) => setTimeout(resolve, 5000));
 		}
