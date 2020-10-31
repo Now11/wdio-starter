@@ -18,7 +18,7 @@ jobs:
           - 4444:4444
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock
-          - wdio-test/src/config/:/etc/selenoid/
+          - ${PWD}/wdio-test/src/config/:/etc/selenoid/
   testjob:
     runs-on: ubuntu-latest
     needs: selenoid-job
