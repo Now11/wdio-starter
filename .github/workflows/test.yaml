@@ -11,8 +11,6 @@ jobs:
     services:
       selenoid:
         image: selenium/node-chrome
-        volumes:
-          - /dev/shm:/dev/shm
         ports:
           - 4444:4444
     steps:
