@@ -8,10 +8,15 @@ on:
 jobs:          
   tests:
     runs-on: ubuntu-latest
+    services:
+      selenoid:
+        image: selenium/standalone-chrome
+        ports:
+          - 4444:4444
     steps:
-      - name: Start Selenoid
-        uses: Xotabu4/selenoid-github-action@v1
-      - name: copy
+      - name: docker containers list
+        uses: docker ps
+      - name: copy repository
         uses: actions/checkout@v2
       - name: Install Dependencies
         run: npm ci
