@@ -20,14 +20,16 @@
         "allure-commandline": "^2.13.0",
         "allure-mocha": "^2.0.0-beta.8",
         "chai": "^4.2.0",
+        "faker": "^5.1.0",
         "ts-node": "^8.10.2",
         "typescript": "^3.9.7",
         "webdriverio": "^6.7.0"
     },
     "devDependencies": {
-        "prettier": "^2.1.2",
         "@types/chai": "^4.2.14",
+        "@types/faker": "^5.1.4",
         "@types/mocha": "^8.0.3",
-        "@types/node": "^14.14.6"
+        "@types/node": "^14.14.6",
+        "prettier": "^2.1.2"
     }
 }

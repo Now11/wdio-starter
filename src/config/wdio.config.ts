@@ -29,7 +29,6 @@ const config: Config = {
 	connectionRetryTimeout: 120000,
 
 	connectionRetryCount: 3,
-	services: ['selenium-standalone'],
 	framework: 'mocha',
 	reporters: [
 		'spec',
