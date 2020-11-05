@@ -1,35 +1,36 @@
 import allure from '@wdio/allure-reporter';
 import { Config } from 'webdriverio';
 import * as path from 'path';
+import * as expect from 'expect-webdriverio';
 
 const ROOT_DIR = process.cwd();
-const OUTPUT_DIR = path.join(ROOT_DIR, 'output');
 const SPECS = path.join(ROOT_DIR, 'specs/**/*.spec.ts');
 
 const config: Config = {
-	runner: 'local',
 	path: '/wd/hub',
 	port: 4444,
+	hostname: 'localhost',
 	specs: [SPECS],
 	maxInstances: 5,
 	capabilities: [
 		{
 			browserName: 'chrome',
 			'goog:chromeOptions': {
-				args: ['window-size=1440,960', '--headless'],
+				//args: ['window-size=1440,960', '--disable-dev-shm-usage', '--disable-notifications'],
+				args: ['window-size=1440,960', '--disable-dev-shm-usage', '--disable-notifications', '--headless'],
 			},
 		},
 	],
 
-	logLevel: 'silent',
+	logLevel: 'debug',
 	bail: 0,
-	baseUrl: '',
 	waitforTimeout: 10000,
-
-	connectionRetryTimeout: 120000,
+	connectionRetryTimeout: 60000,
 
 	connectionRetryCount: 3,
+
 	framework: 'mocha',
+
 	reporters: [
 		'spec',
 		[
@@ -42,13 +43,16 @@ const config: Config = {
 			},
 		],
 	],
+
 	mochaOpts: {
 		ui: 'bdd',
-		timeout: 60000,
+		timeout: 90000,
 		require: 'ts-node/register',
 	},
 
-	outputDir: OUTPUT_DIR,
+	before: function () {
+		expect.setOptions({ interval: 200, wait: 10000 });
+	},
 
 	afterTest: async function (test, context, { error, result, duration, passed, retries }) {
 		if (error) {

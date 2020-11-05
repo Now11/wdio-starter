@@ -1,9 +1,10 @@
 import allure from '@wdio/allure-reporter';
 import { Config } from 'webdriverio';
 import * as path from 'path';
+import * as expect from 'expect-webdriverio';
 
 const ROOT_DIR = process.cwd();
-const OUTPUT_DIR = path.join(ROOT_DIR, 'output');
+const OUTPUT_DIR = path.join(ROOT_DIR, './output');
 const SPECS = path.join(ROOT_DIR, 'specs/**/*.spec.ts');
 
 const config: Config = {
@@ -11,12 +12,13 @@ const config: Config = {
 	port: 4444,
 	hostname: 'localhost',
 	specs: [SPECS],
-	maxInstances: 5,
+	maxInstances: 1,
 	capabilities: [
 		{
+			maxInstances: 1,
 			browserName: 'chrome',
 			'goog:chromeOptions': {
-				args: ['window-size=1440,960', '--headless', '--disable-dev-shm-usage'],
+				args: ['window-size=1440,960', '--headless', '--disable-dev-shm-usage', '--disable-notifications'],
 			},
 		},
 	],
@@ -49,6 +51,10 @@ const config: Config = {
 	},
 
 	outputDir: OUTPUT_DIR,
+
+	before: function () {
+		expect.setOptions({ interval: 200, wait: 10000 });
+	},
 
 	afterTest: async function (test, context, { error, result, duration, passed, retries }) {
 		if (error) {
