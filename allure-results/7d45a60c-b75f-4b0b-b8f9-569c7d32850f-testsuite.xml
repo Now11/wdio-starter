@@ -1,0 +1,28 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1604655732111' stop='1604655734849'>
+    <name>Authorization</name>
+    <title>Authorization</title>
+    <test-cases>
+        <test-case start='1604655732111' status='passed' stop='1604655732112'>
+            <name>should login with valid credentials</name>
+            <title>should login with valid credentials</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-86.0.4240.183'/>
+            </parameters>
+            <steps>
+                <step start='1604655732112' status='passed' stop='1604655734849'>
+                    <name>"after each" hook for "should login with valid credentials"</name>
+                    <title>"after each" hook for "should login with valid credentials"</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

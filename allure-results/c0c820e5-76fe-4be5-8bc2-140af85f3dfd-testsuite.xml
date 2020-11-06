@@ -1,0 +1,75 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1604655732111' stop='1604655737555'>
+    <name>Registration</name>
+    <title>Registration</title>
+    <test-cases>
+        <test-case start='1604655732111' status='passed' stop='1604655734834'>
+            <name>should be able to register new user</name>
+            <title>should be able to register new user</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-1'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-86.0.4240.183'/>
+            </parameters>
+            <steps>
+                <step start='1604655732113' status='passed' stop='1604655733366'>
+                    <name>
+                    Browser: navigate to URL https://demo.realworld.io/#/register</name>
+                    <title>
+                    Browser: navigate to URL https://demo.realworld.io/#/register</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1604655733366' status='passed' stop='1604655733823'>
+                    <name>AuthPage call method register</name>
+                    <title>AuthPage call method register</title>
+                    <attachments/>
+                    <steps>
+                        <step start='1604655733366' status='passed' stop='1604655733503'>
+                            <name>	 
+                            Username input field execute sendKeys with arguments ["Verlie39"]</name>
+                            <title>	 
+                            Username input field execute sendKeys with arguments ["Verlie39"]</title>
+                            <attachments/>
+                            <steps/>
+                        </step>
+                        <step start='1604655733503' status='passed' stop='1604655733634'>
+                            <name>	 
+                            Email input field execute sendKeys with arguments ["Aliyah_Pfannerstill20@yahoo.com"]</name>
+                            <title>	 
+                            Email input field execute sendKeys with arguments ["Aliyah_Pfannerstill20@yahoo.com"]</title>
+                            <attachments/>
+                            <steps/>
+                        </step>
+                        <step start='1604655733634' status='passed' stop='1604655733749'>
+                            <name>	 
+                            Password input field execute sendKeys with arguments ["dlSdx4U9DQIZiwY"]</name>
+                            <title>	 
+                            Password input field execute sendKeys with arguments ["dlSdx4U9DQIZiwY"]</title>
+                            <attachments/>
+                            <steps/>
+                        </step>
+                        <step start='1604655733749' status='passed' stop='1604655733823'>
+                            <name>	 
+                            Sign in button execute click </name>
+                            <title>	 
+                            Sign in button execute click </title>
+                            <attachments/>
+                            <steps/>
+                        </step>
+                    </steps>
+                </step>
+                <step start='1604655734834' status='passed' stop='1604655737555'>
+                    <name>"after each" hook for "should be able to register new user"</name>
+                    <title>"after each" hook for "should be able to register new user"</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>
