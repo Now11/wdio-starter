@@ -1,0 +1,3 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Fri Nov 06 11:42:12 EET 2020","Fri Nov 06 11:42:12 EET 2020","1","","Authorization","","Authorization","should login with valid credentials","should login with valid credentials",""
+"passed","Fri Nov 06 11:42:12 EET 2020","Fri Nov 06 11:42:14 EET 2020","2723","","Registration","","Registration","should be able to register new user","should be able to register new user",""
