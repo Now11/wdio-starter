@@ -9,8 +9,8 @@ const SPECS = path.join(ROOT_DIR, 'specs/**/*.spec.ts');
 
 const config: Config = {
 	path: '/wd/hub',
-	port: Number(process.env.SELENIUM_PORT),
-	hostname: process.env.SELENIUM_HOST,
+	port: process.env.SELENIUM_PORT ? Number(process.env.SELENIUM_PORT) : 4444,
+	hostname: process.env.SELENIUM_HOST ? process.env.SELENIUM_HOST : 'localhost',
 	specs: [SPECS],
 	maxInstances: 1,
 	capabilities: [
