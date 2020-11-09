@@ -13,6 +13,6 @@ describe('Registration', function () {
 
 		await browsr.url(`${env.APP_URL}/#/register`);
 		await authPage.register({ ...user });
-		await expect(browser).toHaveUrl(`${env.APP_URL}/#/1`);
+		await expect(browser).toHaveUrl(`${env.APP_URL}/#/`);
 	});
 });
