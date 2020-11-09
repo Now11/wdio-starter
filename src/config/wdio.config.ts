@@ -15,9 +15,14 @@ const config: Config = {
 	capabilities: [
 		{
 			browserName: 'chrome',
+			browserVersion: '85.0',
 			'goog:chromeOptions': {
 				//args: ['window-size=1440,960', '--disable-dev-shm-usage', '--disable-notifications'],
-				args: ['window-size=1440,960', '--disable-dev-shm-usage', '--disable-notifications', '--headless'],
+				args: ['window-size=1440,960', '--disable-notifications', '--headless'],
+			},
+			'selenoid:options': {
+				enableVNC: false,
+				enableVideo: false,
 			},
 		},
 	],

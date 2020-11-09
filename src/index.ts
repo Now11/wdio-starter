@@ -12,8 +12,8 @@ const provider = {
 	},
 
 	env: {
-		APP_URL: 'https://demo.realworld.io',
-		API_URL: 'https://conduit.productionready.io/api/',
+		APP_URL: 'https://demo.realworld.io', // process.env.BASE_HOST,
+		API_URL: 'https://conduit.productionready.io/api/', // process.env.BASE_HOST_API
 	},
 
 	data: {

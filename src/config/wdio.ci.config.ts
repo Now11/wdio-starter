@@ -9,8 +9,8 @@ const SPECS = path.join(ROOT_DIR, 'specs/**/*.spec.ts');
 
 const config: Config = {
 	path: '/wd/hub',
-	port: 4444,
-	hostname: 'localhost',
+	port: Number(process.env.SELENIUM_PORT),
+	hostname: process.env.SELENIUM_HOST,
 	specs: [SPECS],
 	maxInstances: 1,
 	capabilities: [
@@ -25,7 +25,6 @@ const config: Config = {
 
 	logLevel: 'debug',
 	bail: 0,
-	baseUrl: '',
 	waitforTimeout: 10000,
 
 	connectionRetryTimeout: 120000,
@@ -50,7 +49,7 @@ const config: Config = {
 		require: 'ts-node/register',
 	},
 
-	outputDir: OUTPUT_DIR,
+	//outputDir: OUTPUT_DIR,
 
 	before: function () {
 		expect.setOptions({ interval: 200, wait: 10000 });

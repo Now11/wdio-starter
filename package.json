@@ -5,7 +5,8 @@
         "test": "./node_modules/.bin/wdio wdio.conf.js",
         "allure": "./node_modules/.bin/allure generate & allure open",
         "clear": "rm -rf allure-results/* & rm -rf allure-report/*",
-        "test:ci": "./node_modules/.bin/wdio wdio.ci.conf.js"
+        "test:ci": "./node_modules/.bin/wdio wdio.ci.conf.js",
+        "build:image": "docker build -t my_tests:latest -f ./Tests.Dockerfile ."
     },
     "keywords": [],
     "author": "",
