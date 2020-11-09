@@ -1,0 +1,97 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1604938836696' stop='1604938851202'>
+    <name>Registration</name>
+    <title>Registration</title>
+    <test-cases>
+        <test-case start='1604938836696' status='failed' stop='1604938849213'>
+            <name>should be able to register new user</name>
+            <title>should be able to register new user</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-1'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-86.0.4240.183'/>
+            </parameters>
+            <steps>
+                <step start='1604938836698' status='passed' stop='1604938838565'>
+                    <name>
+                    Browser: navigate to URL https://demo.realworld.io/#/register</name>
+                    <title>
+                    Browser: navigate to URL https://demo.realworld.io/#/register</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1604938838565' status='passed' stop='1604938838914'>
+                    <name>AuthPage call method register</name>
+                    <title>AuthPage call method register</title>
+                    <attachments/>
+                    <steps>
+                        <step start='1604938838565' status='passed' stop='1604938838678'>
+                            <name>	 
+                            Username input field execute sendKeys with arguments ["Terry.Bergnaum81"]</name>
+                            <title>	 
+                            Username input field execute sendKeys with arguments ["Terry.Bergnaum81"]</title>
+                            <attachments/>
+                            <steps/>
+                        </step>
+                        <step start='1604938838678' status='passed' stop='1604938838769'>
+                            <name>	 
+                            Email input field execute sendKeys with arguments ["Mohammed.Moore@hotmail.com"]</name>
+                            <title>	 
+                            Email input field execute sendKeys with arguments ["Mohammed.Moore@hotmail.com"]</title>
+                            <attachments/>
+                            <steps/>
+                        </step>
+                        <step start='1604938838769' status='passed' stop='1604938838852'>
+                            <name>	 
+                            Password input field execute sendKeys with arguments ["5rpPwpk1Kw3KU4L"]</name>
+                            <title>	 
+                            Password input field execute sendKeys with arguments ["5rpPwpk1Kw3KU4L"]</title>
+                            <attachments/>
+                            <steps/>
+                        </step>
+                        <step start='1604938838852' status='passed' stop='1604938838914'>
+                            <name>	 
+                            Sign in button execute click </name>
+                            <title>	 
+                            Sign in button execute click </title>
+                            <attachments/>
+                            <steps/>
+                        </step>
+                    </steps>
+                </step>
+                <step start='1604938848941' status='failed' stop='1604938849209'>
+                    <name>Screenshot current url: https://demo.realworld.io/#/ </name>
+                    <title>Screenshot current url: https://demo.realworld.io/#/ </title>
+                    <attachments>
+                        <attachment title='Screenshot' source='98b06eea-32d5-403f-b864-e72148009b5f-attachment.png' type='image/png' size='29176'/>
+                    </attachments>
+                    <steps/>
+                </step>
+                <step start='1604938849213' status='passed' stop='1604938851202'>
+                    <name>"after each" hook for "should be able to register new user"</name>
+                    <title>"after each" hook for "should be able to register new user"</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+            <failure>
+                <message>Expect window to have url
+                
+                Expected: "https://demo.realworld.io/#/1"
+                Received: "https://demo.realworld.io/#/"</message>
+                <stack-trace>Error: Expect window to have url
+                
+                Expected: "https://demo.realworld.io/#/1"
+                Received: "https://demo.realworld.io/#/"
+                    at Context.&lt;anonymous> (C:\Users\Professional\Desktop\wdio-test\specs\auth\registration.spec.ts:16:25)
+                    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+                    at Context.executeAsync (C:\Users\Professional\Desktop\wdio-test\node_modules\@wdio\utils\build\shim.js:96:16)
+                    at Context.exports.testFrameworkFnWrapper (C:\Users\Professional\Desktop\wdio-test\node_modules\@wdio\utils\build\test-framework\testFnWrapper.js:25:18)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>
