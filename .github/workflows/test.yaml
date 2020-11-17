@@ -16,5 +16,7 @@ jobs:
         run: docker network create -d bridge selenoid
       - name: pull chrome image
         run: docker pull selenoid/chrome:86.0
+      - name: build tests docker container
+        run: docker build -t tests:latest -f ./Tests.Dockerfile . 
       - name: run tests
         run: docker-compose up
