@@ -9,19 +9,21 @@ on:
 jobs:          
   tests:
     runs-on: ubuntu-latest
-    services:
-      selenoid:
-        image: selenium/standalone-chrome
-        ports:
-          - 4444:4444
+    # services:
+    #   selenoid:
+    #     image: selenium/standalone-chrome
+    #     ports:
+    #       - 4444:4444
     steps:
-      - name: docker containers list
-        run: docker ps
-      - name: copy repository
-        uses: actions/checkout@v2
-      - name: Install Dependencies
-        run: npm ci
-      - name: Build
-        run: npm run build
-      - name: run tests
-        run: npm run test:ci
+      - name: docker test
+        run: docker pull selenoid/chrome:86.0
+      - name: test2
+        run: docker ps -a
+      # - name: copy repository
+      #   uses: actions/checkout@v2
+      # - name: Install Dependencies
+      #   run: npm ci
+      # - name: Build
+      #   run: npm run build
+      # - name: run tests
+      #   run: npm run test:ci
