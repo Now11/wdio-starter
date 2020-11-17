@@ -20,3 +20,5 @@ jobs:
         run: docker build -t tests:latest -f ./Tests.Dockerfile . 
       - name: run tests
         run: docker-compose up
+      - name: stop containers
+        run: docker-compose down
