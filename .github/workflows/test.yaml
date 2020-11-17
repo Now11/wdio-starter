@@ -13,4 +13,4 @@ jobs:
       - name: copy repository
         uses: actions/checkout@v2
       - name: start tests
-        run: sh run.tests.sh
+        run: sh ./run.tests.sh

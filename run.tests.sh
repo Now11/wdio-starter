@@ -1,8 +1,8 @@
-#!/usr/bin/sh
+#!/bin/sh
 
 set -e
 
-function wait() {
+wait() {
   DOCKER_PS_OUTPUT=$(docker ps)
 
   if [[ $DOCKER_PS_OUTPUT =~ "tests"]]; then
