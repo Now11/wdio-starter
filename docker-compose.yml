@@ -39,6 +39,8 @@ services:
     volumes:
       - C:\Users\Professional\Desktop\wdio-test\allure-results:/usr/automation/allure-results
     environment:
+      # APP_URL:
+      # API_URL:
       SELENIUM_HOST: selenoid
       SELENIUM_PORT: 4444
       

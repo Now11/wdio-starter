@@ -47,6 +47,11 @@ abstract class BaseElement {
 		await this.waitForVisible();
 		return this.element.getText();
 	}
+
+	async el(): Promise<Element> {
+		await this.initCurrentElement();
+		return this.element;
+	}
 }
 
 export { BaseElement };

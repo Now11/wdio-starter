@@ -1,14 +1,14 @@
 import * as fake from 'faker';
 
 export class CreateUserModel {
-	userName: string;
+	username: string;
 	password: string;
 	email: string;
 
 	constructor() {
 		this.password = fake.internet.password();
-		this.email = fake.internet.email();
-		this.userName = fake.internet.userName();
+		this.email = fake.internet.email().toLowerCase();
+		this.username = fake.internet.userName();
 	}
 
 	_password(password: string) {
@@ -21,8 +21,8 @@ export class CreateUserModel {
 		return this;
 	}
 
-	_firstName(userName: string) {
-		this.userName = userName;
+	_firstName(username: string) {
+		this.username = username;
 		return this;
 	}
 }

@@ -19,8 +19,8 @@ class AuthPage extends BasePage {
 		await this.signInForm.signInBtn.click();
 	}
 
-	async register({ userName, email, password }: { userName: string; email: string; password: string }) {
-		await this.registerForm.usernameField.sendKeys(userName);
+	async register({ username, email, password }: { username: string; email: string; password: string }) {
+		await this.registerForm.usernameField.sendKeys(username);
 		await this.registerForm.emailField.sendKeys(email);
 		await this.registerForm.passwordField.sendKeys(password);
 		await this.registerForm.signUpBtn.click();

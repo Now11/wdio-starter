@@ -26,7 +26,7 @@ const config: Config = {
 		},
 	],
 
-	logLevel: 'debug',
+	logLevel: 'silent',
 	bail: 0,
 	waitforTimeout: 10000,
 	connectionRetryTimeout: 60000,
@@ -56,6 +56,7 @@ const config: Config = {
 
 	before: function () {
 		expect.setOptions({ interval: 200, wait: 10000 });
+		this.a = 15;
 	},
 
 	afterTest: async function (test, context, { error, result, duration, passed, retries }) {
@@ -65,6 +66,9 @@ const config: Config = {
 			await browser.takeScreenshot();
 			allure.endStep('failed');
 		}
+	},
+	beforeTest() {
+		this.a = 15;
 	},
 	beforeSession: function () {
 		//wait for debugger

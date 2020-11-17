@@ -3,7 +3,7 @@ import { Element, ElementArray } from 'webdriverio';
 interface IFragment {
 	root: () => Promise<Element | ElementArray>;
 	name: string;
-	isArr: boolean;
+	isArr?: boolean;
 }
 
 abstract class BaseFragment {

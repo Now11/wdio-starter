@@ -7,12 +7,13 @@
         "clear": "rm -rf allure-results/* & rm -rf allure-report/*",
         "test:ci": "./node_modules/.bin/wdio ./build/wdio.ci.conf.js",
         "build:image": "docker build -t my_tests:latest -f ./Tests.Dockerfile .",
-        "build":"tsc"
+        "build": "tsc"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@types/supertest": "^2.0.10",
         "@wdio/allure-reporter": "^6.7.0",
         "@wdio/cli": "^6.7.0",
         "@wdio/local-runner": "^6.7.0",

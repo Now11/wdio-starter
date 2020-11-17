@@ -20,6 +20,11 @@ const config: Config = {
 			'goog:chromeOptions': {
 				args: ['window-size=1440,960', '--headless', '--disable-dev-shm-usage', '--disable-notifications'],
 			},
+			'selenoid:options': {
+				enableVNC: false,
+				enableVideo: false,
+				enableLog: true,
+			},
 		},
 	],
 

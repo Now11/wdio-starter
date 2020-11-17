@@ -8,12 +8,12 @@ interface IElementType<T> {
 const wait = {
 	elementForVisible: async (ctx): Promise<boolean> => {
 		const { element, name }: IElementType<Element> = ctx;
-		return element.waitForDisplayed({ timeout: 1000, timeoutMsg: `Element ${name} should be visible` });
+		return element.waitForDisplayed({ timeout: 10000, timeoutMsg: `Element ${name} should be visible` });
 	},
 
 	elementForExist: async (ctx): Promise<boolean> => {
 		const { element, name }: IElementType<Element> = ctx;
-		return element.waitForExist({ timeout: 5000, timeoutMsg: `Element ${name} should exist` });
+		return element.waitForExist({ timeout: 10000, timeoutMsg: `Element ${name} should exist` });
 	},
 
 	forListToNotEmpty: async (ctx): Promise<boolean> => {
@@ -22,18 +22,18 @@ const wait = {
 			async () => {
 				return element.length > 0;
 			},
-			{ timeout: 5000, interval: 200, timeoutMsg: `${name} is empty` },
+			{ timeout: 10000, interval: 200, timeoutMsg: `${name} is empty` },
 		);
 	},
 
 	listElementForVisible: async ({ ctx, index }): Promise<boolean> => {
 		const { element, name }: IElementType<ElementArray> = ctx;
-		return element[index].waitForDisplayed({ timeout: 5000, timeoutMsg: `Element ${name} should be visible` });
+		return element[index].waitForDisplayed({ timeout: 10000, timeoutMsg: `Element ${name} should be visible` });
 	},
 
 	listElementToExist: async ({ ctx, index }): Promise<boolean> => {
 		const { element, name }: IElementType<ElementArray> = ctx;
-		return element[index].waitForDisplayed({ timeout: 5000, timeoutMsg: `Element ${name} should exist` });
+		return element[index].waitForDisplayed({ timeout: 10000, timeoutMsg: `Element ${name} should exist` });
 	},
 };
 
