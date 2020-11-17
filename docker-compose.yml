@@ -10,7 +10,7 @@ services:
       - 4444:4444
     volumes:
       # if linux
-      - /src/config/:/etc/selenoid/
+      - $PWD/src/config/:/etc/selenoid/
       # if Windows
       # - C:\Users\Professional\Desktop\wdio-test\src\config\:/etc/selenoid/
       - /var/run/docker.sock:/var/run/docker.sock
@@ -39,10 +39,10 @@ services:
     volumes:
       - /allure-results:/usr/automation/allure-results
     environment:
-      # APP_URL:
-      # API_URL:
       SELENIUM_HOST: selenoid
       SELENIUM_PORT: 4444
+      # APP_URL:
+      # API_URL:
       
 networks:
   selenoid:
