@@ -28,7 +28,7 @@ const config: Config = {
 		},
 	],
 
-	logLevel: 'debug',
+	logLevel: 'silent',
 	bail: 0,
 	waitforTimeout: 10000,
 
