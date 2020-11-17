@@ -25,7 +25,7 @@ sleep 3
 
 wait
 
-while [ $RESULT -lt 2]; do
+while [[ $RESULT -lt 2 ]]; do
   echo 'Testing . . . '
   sleep 10
   wait
