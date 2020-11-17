@@ -10,41 +10,40 @@ services:
       - 4444:4444
     volumes:
       # if linux
-      # - $PWD/src/config/:/etc/selenoid/
+      - /src/config/:/etc/selenoid/
       # if Windows
-       - C:\Users\Professional\Desktop\wdio-test\src\config\:/etc/selenoid/
-       - /var/run/docker.sock:/var/run/docker.sock
+      # - C:\Users\Professional\Desktop\wdio-test\src\config\:/etc/selenoid/
+      - /var/run/docker.sock:/var/run/docker.sock
     command: ["-service-startup-timeout", "1m", "-limit", "25", "-container-network", "selenoid"]
 
-  selenoid_ui:
-    networks:
-      selenoid: null
-    image: aerokube/selenoid-ui
-    container_name: 'selenoid-ui'
-    depends_on: 
-      - selenoid
-    links:
-      - selenoid
-    ports:
-      - 8082:8080
-    command: ["--selenoid-uri", "http://selenoid:4444"]
+  # selenoid_ui:
+  #   networks:
+  #     selenoid: null
+  #   image: aerokube/selenoid-ui
+  #   container_name: 'selenoid-ui'
+  #   depends_on: 
+  #     - selenoid
+  #   links:
+  #     - selenoid
+  #   ports:
+  #     - 8082:8080
+  #   command: ["--selenoid-uri", "http://selenoid:4444"]
 
   tests:
     networks:
       selenoid: null
-    image: my_tests:latest
-    container_name: 'my_tests'
+    image: tests:latest
+    container_name: 'tests:latest'
     depends_on: 
         - selenoid
     volumes:
-      - C:\Users\Professional\Desktop\wdio-test\allure-results:/usr/automation/allure-results
+      - /allure-results:/usr/automation/allure-results
     environment:
       # APP_URL:
       # API_URL:
       SELENIUM_HOST: selenoid
       SELENIUM_PORT: 4444
       
-# network should be created manually
 networks:
   selenoid:
     external:

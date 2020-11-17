@@ -9,25 +9,12 @@ on:
 jobs:          
   tests:
     runs-on: ubuntu-latest
-    # services:
-    #   selenoid:
-    #     image: selenium/standalone-chrome
-    #     ports:
-    #       - 4444:4444
     steps:
-      - name: docker test
+      - name: copy repository
+        uses: actions/checkout@v2
+      - name: create network
+        run: docker network create -d bridge selenoid
+      - name: pull chrome image
         run: docker pull selenoid/chrome:86.0
-      - name: test2
-        run: docker ps -a
-      - name: run selenoid
-        run: docker run -d -p 4444:4444 -v /var/run/docker.sock:/var/run/docker.sock -v /src/config/:/etc/selenoid aerokube/selenoid:latest-release
-      - name: docker ps
-        run: docker ps
-      # - name: copy repository
-      #   uses: actions/checkout@v2
-      # - name: Install Dependencies
-      #   run: npm ci
-      # - name: Build
-      #   run: npm run build
-      # - name: run tests
-      #   run: npm run test:ci
+      - name: run tests
+        run: docker-compose up
