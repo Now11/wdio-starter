@@ -3,7 +3,7 @@
 set -e
 
 function wait() {
-    DOCKER_PS_OUTPUT = $(docker ps)
+    DOCKER_PS_OUTPUT=$(docker ps)
 
     if [[ $DOCKER_PS_OUTPUT =~ "tests"]]; then
         RESULT = 1
