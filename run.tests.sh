@@ -4,7 +4,7 @@ set -e
 
 function wait() {
   DOCKER_PS_OUTPUT=$(docker ps)
-  if [[ $DOCKER_PS_OUTPUT =~ "tests"]]; then
+  if [[ $DOCKER_PS_OUTPUT =~ "tests"]] then
     RESULT = 1
   else
     RESULT = 2
@@ -24,7 +24,7 @@ sleep 3
 
 wait
 
-while [ $RESULT -lt 2 ]; do
+while [ $RESULT -lt 2 ] do
   echo 'Testing . . . '
   sleep 10
   wait
