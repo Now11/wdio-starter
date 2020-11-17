@@ -32,8 +32,8 @@ services:
   tests:
     networks:
       selenoid: null
-    image: tests
-    container_name: 'tests:latest'
+    image: tests:latest
+    container_name: tests
     depends_on: 
         - selenoid
     volumes:
