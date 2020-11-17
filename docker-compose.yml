@@ -32,7 +32,7 @@ services:
   tests:
     networks:
       selenoid: null
-    image: tests:latest
+    image: tests
     container_name: 'tests:latest'
     depends_on: 
         - selenoid
