@@ -30,4 +30,6 @@ while [ $RESULT -lt 2 ]; do
   wait
 done
 
+docker logs tests
+
 docker-compose down
