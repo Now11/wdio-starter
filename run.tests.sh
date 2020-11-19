@@ -31,5 +31,5 @@ while [ $RESULT -lt 2 ]; do
 done
 
 docker logs tests
-
+ls -la allure-results
 docker-compose down
