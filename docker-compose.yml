@@ -10,7 +10,7 @@ services:
       - 4444:4444
     volumes:
       # if linux
-      - $PWD/src/config/:/etc/selenoid/
+      - /src/config/:/etc/selenoid/
       # if Windows
       # - C:\Users\Professional\Desktop\wdio-test\src\config\:/etc/selenoid/
       - /var/run/docker.sock:/var/run/docker.sock
