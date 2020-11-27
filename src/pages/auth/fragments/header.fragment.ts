@@ -8,8 +8,8 @@ class HeaderNavFragment extends BaseFragment {
 	constructor({ root, name }) {
 		super({ root, name });
 		this.toHome = this.initChild(ButtonElement, '[ui-sref="app.home"]', 'Home button');
-		this.toSignIn = this.initChild(ButtonElement, '[ui-sref="app.login"', 'Sign in button');
-		this.toSignUp = this.initChild(ButtonElement, '[ui-sref="app.register"', 'Sign up button');
+		this.toSignIn = this.initChild(ButtonElement, '[ui-sref="app.login"]', 'Sign in button');
+		this.toSignUp = this.initChild(ButtonElement, '[ui-sref="app.register"]', 'Sign up button');
 	}
 }
 export { HeaderNavFragment };

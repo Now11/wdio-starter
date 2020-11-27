@@ -1,5 +1,5 @@
 import * as fake from 'faker';
-
+import { rndNumber } from '../../helpers';
 export class CreateUserModel {
 	username: string;
 	password: string;
@@ -7,8 +7,8 @@ export class CreateUserModel {
 
 	constructor() {
 		this.password = fake.internet.password();
-		this.email = fake.internet.email().toLowerCase();
-		this.username = fake.internet.userName();
+		this.email = fake.internet.email(fake.random.uuid()).toLowerCase();
+		this.username = fake.internet.userName(rndNumber().toString());
 	}
 
 	_password(password: string) {

@@ -9,9 +9,8 @@ function decorateService(target: Function): void {
 		const fn = target.prototype[method];
 		target.prototype[method] = function (...args) {
 			const localStepName = `${target.prototype.constructor.name} call method ${method}`;
-			return stepMethodAllure(localStepName, fn.bind(this, ...args));
+			return stepMethodAllure(localStepName, fn.bind(this), ...args);
 		};
-		return originalMethods;
 	});
 }
 
@@ -20,18 +19,19 @@ function step(stepName: string | Function): Function {
 		const currValue = descriptor.value;
 
 		descriptor.value = function (...args) {
-			let cuurentStepName = stepName;
-			cuurentStepName =
-				'\n' + ((typeof cuurentStepName === 'string' ? cuurentStepName : cuurentStepName(this.name)) as string);
-			const currArgs = args.length !== 0 ? `with arguments ${JSON.stringify(args)}` : '';
+			let currentStepName = stepName;
+			currentStepName = (typeof currentStepName === 'string'
+				? currentStepName
+				: currentStepName(this.name)) as string;
+			const currArgs = args.length !== 0 ? `with arguments: ${JSON.stringify(args)}` : '';
 			if (this.constructor.name.includes('Element')) {
-				cuurentStepName = `\t ${cuurentStepName} ${currArgs}`;
+				currentStepName = `${currentStepName} ${currArgs}`;
 			}
 
 			if (this.constructor.name.includes('Browser')) {
-				cuurentStepName = `${cuurentStepName} ${args[0] ? args[0] : ''}`;
+				currentStepName = `${currentStepName} ${args[0] ? args[0] : ''}`;
 			}
-			return stepAllure(cuurentStepName, currValue.bind(this, ...args));
+			return stepAllure(currentStepName, currValue.bind(this, ...args));
 		};
 		return descriptor;
 	};

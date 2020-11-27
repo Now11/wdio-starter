@@ -26,4 +26,5 @@ class AuthPage extends BasePage {
 		await this.registerForm.signUpBtn.click();
 	}
 }
+
 export { AuthPage };

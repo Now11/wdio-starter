@@ -23,14 +23,17 @@ services:
     image: tests:latest
     container_name: tests
     depends_on: 
-        - selenoid
-    volumes:
-      - /allure-results:/usr/automation/allure-results
+      - selenoid
+    # volumes:
+      # if windows
+      # - C:\Users\Professional\Desktop\wdio-test\allure-results:/usr/automation/allure-results
+      # if linux
+      # - /allure-results:/usr/automation/allure-results
     environment:
       SELENIUM_HOST: selenoid
       SELENIUM_PORT: 4444
-      # APP_URL:
-      # API_URL:
+      APP_URL: https://demo.realworld.io
+      API_URL: https://conduit.productionready.io/api
 
 
   # selenoid_ui:

@@ -4,6 +4,7 @@ import * as path from 'path';
 import * as expect from 'expect-webdriverio';
 
 const ROOT_DIR = process.cwd();
+const OUTPUT_DIR = path.join(ROOT_DIR, 'output');
 const SPECS = path.join(ROOT_DIR, 'specs/**/*.spec.ts');
 
 const config: Config = {
@@ -11,13 +12,20 @@ const config: Config = {
 	port: 4444,
 	hostname: 'localhost',
 	specs: [SPECS],
-	maxInstances: 5,
+	maxInstances: 2,
 	capabilities: [
 		{
+			maxInstances: 2,
 			browserName: 'chrome',
 			'goog:chromeOptions': {
 				//args: ['window-size=1440,960', '--disable-dev-shm-usage', '--disable-notifications'],
-				args: ['window-size=1440,960', '--disable-notifications', '--headless'],
+				args: [
+					'window-size=1440,960',
+					'--disable-notifications',
+					'--headless',
+					'--disable-gpu',
+					'--no-sandbox',
+				],
 			},
 			'selenoid:options': {
 				enableVNC: false,
@@ -26,7 +34,7 @@ const config: Config = {
 		},
 	],
 
-	logLevel: 'silent',
+	logLevel: 'debug',
 	bail: 0,
 	waitforTimeout: 10000,
 	connectionRetryTimeout: 60000,
@@ -48,6 +56,7 @@ const config: Config = {
 		],
 	],
 
+	outputDir: OUTPUT_DIR,
 	mochaOpts: {
 		ui: 'bdd',
 		timeout: 90000,
@@ -67,9 +76,7 @@ const config: Config = {
 			allure.endStep('failed');
 		}
 	},
-	beforeTest() {
-		this.a = 15;
-	},
+
 	beforeSession: function () {
 		//wait for debugger
 		if (process.env.DEBUG) {

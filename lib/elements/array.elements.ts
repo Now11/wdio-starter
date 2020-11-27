@@ -43,7 +43,7 @@ class ArrayElement {
 	}
 
 	@step((name) => `${name} execute sendKeys`)
-	async sendKeys({ index, keys }: { index: number; keys: string }): Promise<void> {
+	async sendKeys(keys: string, { index }: { index: number }): Promise<void> {
 		await this.waitForVisible(index);
 		await this.element[index].setValue(keys);
 	}
