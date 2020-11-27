@@ -13,7 +13,7 @@ jobs:
       - name: copy repository
         uses: actions/checkout@v2
         with:
-          ubmodules: 'true'
+          submodules: 'true'
           token: ${{secrets.CI_PAT}}
       - name: start tests
         run: bash ./run.tests.sh
