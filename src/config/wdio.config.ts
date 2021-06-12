@@ -1,81 +1,19 @@
-import allure from '@wdio/allure-reporter';
-import { Config } from 'webdriverio';
-import * as path from 'path';
-import * as expect from 'expect-webdriverio';
+import { baseConfig } from './base.config';
 
-const ROOT_DIR = process.cwd();
-const OUTPUT_DIR = path.join(ROOT_DIR, 'output');
-const SPECS = path.join(ROOT_DIR, 'specs/**/*.spec.ts');
+const config: WebdriverIO.Config = {
+	...baseConfig,
 
-const config: Config = {
-	path: '/wd/hub',
-	port: 4444,
-	hostname: 'localhost',
-	specs: [SPECS],
-	maxInstances: 2,
+	logLevel: 'debug',
 	capabilities: [
 		{
 			maxInstances: 2,
+			acceptInsecureCerts: true,
 			browserName: 'chrome',
 			'goog:chromeOptions': {
-				//args: ['window-size=1440,960', '--disable-dev-shm-usage', '--disable-notifications'],
-				args: [
-					'window-size=1440,960',
-					'--disable-notifications',
-					'--headless',
-					'--disable-gpu',
-					'--no-sandbox',
-				],
-			},
-			'selenoid:options': {
-				enableVNC: false,
-				enableVideo: false,
+				args: ['window-size=1440,960', '--disable-notifications'],
 			},
 		},
 	],
-
-	logLevel: 'debug',
-	bail: 0,
-	waitforTimeout: 10000,
-	connectionRetryTimeout: 60000,
-
-	connectionRetryCount: 3,
-
-	framework: 'mocha',
-
-	reporters: [
-		'spec',
-		[
-			'allure',
-			{
-				outputDir: 'allure-results',
-				disableMochaHooks: true,
-				disableWebdriverScreenshotsReporting: false,
-				disableWebdriverStepsReporting: true,
-			},
-		],
-	],
-
-	outputDir: OUTPUT_DIR,
-	mochaOpts: {
-		ui: 'bdd',
-		timeout: 90000,
-		require: 'ts-node/register',
-	},
-
-	before: function () {
-		expect.setOptions({ interval: 200, wait: 10000 });
-		this.a = 15;
-	},
-
-	afterTest: async function (test, context, { error, result, duration, passed, retries }) {
-		if (error) {
-			const currentUrl = await browser.getUrl();
-			allure.startStep(`Screenshot current url: ${currentUrl} `);
-			await browser.takeScreenshot();
-			allure.endStep('failed');
-		}
-	},
 
 	beforeSession: function () {
 		//wait for debugger

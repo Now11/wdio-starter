@@ -1,12 +1,22 @@
 import { BaseElement } from './base.element';
+import { step } from '../report';
 
-class ButtonElement extends BaseElement {
+class Button extends BaseElement {
 	constructor({ root, name }) {
 		super({ root, name });
 	}
 
-	async sendKeys(): Promise<void> {
-		throw new Error(`${this.elementName} does not have sendKeys`);
+	async clickByText(text: string) {
+		await this.waitForVisible(text);
+		await this.element.click();
+	}
+
+	@step((name) => `${name} execute click`)
+	async click(): Promise<void> {
+		await this.waitForVisible();
+		console.log(this.element);
+		await this.element.click();
 	}
 }
-export { ButtonElement };
+
+export { Button };

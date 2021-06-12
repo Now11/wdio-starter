@@ -1,39 +1,38 @@
-import { Element, ElementArray } from 'webdriverio';
-
-interface IElementType<T> {
-	element: T;
-	name: string;
-}
+import { IWaitContext, IWaitContextArray } from '../common/interfaces';
 
 const wait = {
-	elementForVisible: async (ctx): Promise<boolean> => {
-		const { element, name }: IElementType<Element> = ctx;
-		return element.waitForDisplayed({ timeout: 10000, timeoutMsg: `Element ${name} should be visible` });
+	forElementToBeVisible: async (ctx: IWaitContext): Promise<boolean | void> => {
+		const { element, name } = ctx;
+		return element.waitForDisplayed({ timeout: 10000, timeoutMsg: `Element ${name} isn't visible` });
 	},
 
-	elementForExist: async (ctx): Promise<boolean> => {
-		const { element, name }: IElementType<Element> = ctx;
-		return element.waitForExist({ timeout: 10000, timeoutMsg: `Element ${name} should exist` });
+	forElementToExist: async (ctx: IWaitContext): Promise<boolean | void> => {
+		const { element, name } = ctx;
+		return element.waitForExist({ timeout: 10000, timeoutMsg: `Element ${name} does not exist` });
 	},
 
-	forListToNotEmpty: async (ctx): Promise<boolean> => {
-		const { element, name }: IElementType<ElementArray> = ctx;
-		return browser.waitUntil(
-			async () => {
-				return element.length > 0;
-			},
-			{ timeout: 10000, interval: 200, timeoutMsg: `${name} is empty` },
-		);
+	forListToBeVisible: async (ctx: IWaitContextArray): Promise<void> => {
+		const { elements, name } = ctx;
+		const elems = elements.map((element) => {
+			element.waitForDisplayed({
+				timeout: 10000,
+				timeoutMsg: `All elements aren't visible from the ${name} list`,
+			});
+		});
+
+		await Promise.all(elems);
 	},
 
-	listElementForVisible: async ({ ctx, index }): Promise<boolean> => {
-		const { element, name }: IElementType<ElementArray> = ctx;
-		return element[index].waitForDisplayed({ timeout: 10000, timeoutMsg: `Element ${name} should be visible` });
-	},
+	forListToExist: async (ctx: IWaitContextArray): Promise<void> => {
+		const { elements, name } = ctx;
+		const elems = elements.map((element) => {
+			element.waitForDisplayed({
+				timeout: 10000,
+				timeoutMsg: `All elements aren't visible from the ${name} list`,
+			});
+		});
 
-	listElementToExist: async ({ ctx, index }): Promise<boolean> => {
-		const { element, name }: IElementType<ElementArray> = ctx;
-		return element[index].waitForDisplayed({ timeout: 10000, timeoutMsg: `Element ${name} should exist` });
+		await Promise.all(elems);
 	},
 };
 

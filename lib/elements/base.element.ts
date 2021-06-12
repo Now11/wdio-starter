@@ -1,56 +1,30 @@
-import { Element } from 'webdriverio';
+import { IElement } from '../common/interfaces';
+import { ICustomElement } from '../common/interfaces/customElement.interface';
 import { wait } from '../element_utils';
 import { step } from '../report';
 
 abstract class BaseElement {
-	private root: () => Promise<Element>;
-	protected name: string;
-	protected element: Element;
+	private root: (selectorModifier?: string) => Promise<IElement>;
+	name: string;
+	element: IElement;
 
-	constructor({ root, name }: { root: () => Promise<Element>; name?: string }) {
+	constructor({ root, name }: ICustomElement<IElement>) {
 		this.root = root;
 		this.name = name ? name : BaseElement.name;
 	}
 
-	protected async initCurrentElement() {
-		this.element = await this.root();
+	protected async initCurrentElement(selectorModifier?: string) {
+		this.element = await this.root(selectorModifier);
 	}
 
-	get elementName(): string {
-		return this.name;
+	async waitForExist(selectorModifier?: string): Promise<void> {
+		await this.initCurrentElement(selectorModifier);
+		await wait.forElementToExist(this);
 	}
 
-	async waitForExist(): Promise<void> {
-		await this.initCurrentElement();
-		await wait.elementForExist(this);
-	}
-
-	async waitForVisible(): Promise<void> {
-		await this.initCurrentElement();
-		await wait.elementForVisible(this);
-	}
-
-	@step((name) => `${name} execute click`)
-	async click(): Promise<void> {
-		await this.waitForVisible();
-		await this.element.click();
-	}
-
-	@step((name) => `${name} execute sendKeys`)
-	async sendKeys(keys: string): Promise<void> {
-		await this.waitForVisible();
-		await this.element.setValue(keys);
-	}
-
-	@step((name) => `${name} execute get text`)
-	async getText(): Promise<string> {
-		await this.waitForVisible();
-		return this.element.getText();
-	}
-
-	async el(): Promise<Element> {
-		await this.initCurrentElement();
-		return this.element;
+	async waitForVisible(selectorModifier?: string): Promise<void> {
+		await this.initCurrentElement(selectorModifier);
+		await wait.forElementToBeVisible(this);
 	}
 }
 

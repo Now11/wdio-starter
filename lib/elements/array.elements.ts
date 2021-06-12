@@ -1,52 +1,42 @@
-import { ElementArray } from 'webdriverio';
+import { IElementArray } from '../common/interfaces';
+import { ICustomElement } from '../common/interfaces/customElement.interface';
 import { wait } from '../element_utils';
 import { step } from '../report';
 
-class ArrayElement {
-	private root: () => Promise<ElementArray>;
-	private name: string;
-	private element: ElementArray;
-	constructor({ root, name }: { root: () => Promise<ElementArray>; name: string }) {
+class ElementsList {
+	private root: () => Promise<IElementArray>;
+	name: string;
+	elements: IElementArray;
+	constructor({ root, name }: ICustomElement<IElementArray>) {
 		this.root = root;
-		this.name = name ? name : ArrayElement.name;
-	}
-
-	get elementName(): string {
-		return this.name;
+		this.name = name ? name : ElementsList.name;
 	}
 
 	protected async initElementList(): Promise<void> {
-		this.element = await this.root();
-		await wait.forListToNotEmpty(this);
+		this.elements = await this.root();
 	}
 
-	private async waitForVisible(index: number): Promise<void> {
+	private async waitForVisible(): Promise<void> {
 		await this.initElementList();
-		await wait.listElementForVisible({ ctx: this, index });
+		await wait.forListToBeVisible(this);
 	}
 
-	private async waitForExist(index): Promise<void> {
+	private async waitForExist(): Promise<void> {
 		await this.initElementList();
-		await wait.listElementToExist({ ctx: this, index });
+		await wait.forListToExist(this);
 	}
 
 	@step((name) => `${name} execute get element text`)
 	async getText(index: number): Promise<string> {
-		await this.waitForExist(index);
-		return this.element[index].getText();
+		await this.waitForExist();
+		return this.elements[index].getText();
 	}
 
 	@step((name) => `${name} execute click`)
 	async click(index: number): Promise<void> {
-		await this.waitForVisible(index);
-		await this.element[index].click();
-	}
-
-	@step((name) => `${name} execute sendKeys`)
-	async sendKeys(keys: string, { index }: { index: number }): Promise<void> {
-		await this.waitForVisible(index);
-		await this.element[index].setValue(keys);
+		await this.waitForVisible();
+		await this.elements[index].click();
 	}
 }
 
-export { ArrayElement };
+export { ElementsList };
