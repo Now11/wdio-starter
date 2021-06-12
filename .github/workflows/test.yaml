@@ -10,7 +10,7 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-      - name: copy repository
+      - name: copy source code
         uses: actions/checkout@v2
         with:
           submodules: 'true'
