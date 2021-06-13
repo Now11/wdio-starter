@@ -14,7 +14,7 @@ function wait() {
 
 docker network create selenoid || true
 
-docker pull selenoid/chrome:86.0
+docker pull selenoid/chrome:latest
 docker pull aerokube/selenoid:latest-release
 docker build -t tests:latest -f ./Tests.Dockerfile .
 
