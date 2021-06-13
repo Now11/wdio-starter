@@ -1,6 +1,7 @@
 import { BasePage, Log, Input, Button } from '../../../lib';
 import { IUser } from '../../data';
 
+@Log
 class AuthPage extends BasePage {
 	nameField: Input;
 	surname: Input;

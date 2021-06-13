@@ -59,6 +59,7 @@ const baseConfig: WebdriverIO.Config = {
 			allure.endStep('failed');
 		}
 	},
+	//outputDir: OUTPUT_DIR,
 };
 
 export { baseConfig };

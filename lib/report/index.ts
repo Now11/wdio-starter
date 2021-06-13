@@ -20,18 +20,11 @@ function step(stepName: string | Function): Function {
 
 		descriptor.value = function (...args) {
 			let currentStepName = stepName;
-			currentStepName = (typeof currentStepName === 'string'
-				? currentStepName
-				: currentStepName(this.name)) as string;
-			const currArgs = args.length !== 0 ? `with arguments: ${JSON.stringify(args)}` : '';
-			if (this.constructor.name.includes('Element')) {
-				currentStepName = `${currentStepName} ${currArgs}`;
-			}
+			currentStepName = (
+				typeof currentStepName === 'string' ? currentStepName : currentStepName(this.name)
+			) as string;
 
-			if (this.constructor.name.includes('Browser')) {
-				currentStepName = `${currentStepName} ${args[0] ? args[0] : ''}`;
-			}
-			return stepAllure(currentStepName, currValue.bind(this, ...args));
+			return stepAllure(currentStepName, currValue.bind(this, ...args), args);
 		};
 		return descriptor;
 	};

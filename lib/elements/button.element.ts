@@ -6,6 +6,7 @@ class Button extends BaseElement {
 		super({ root, name });
 	}
 
+	@step((name) => `${name} execute click by text`)
 	async clickByText(text: string) {
 		await this.waitForVisible(text);
 		await this.element.click();

@@ -1,34 +1,28 @@
 import allure from '@wdio/allure-reporter';
 
-async function stepAllure(name: string, cb: Function): Promise<string | object> {
+async function stepAllure(name: string, cb: Function, args: any[]): Promise<void> {
 	allure.startStep(name);
 
 	try {
-		const result = await cb();
-		if (typeof result === 'string') {
-			allure.addAttachment('Attachment', result, 'application/json');
-		}
-		if (typeof result === 'object') {
-			allure.addAttachment('Attachment', JSON.stringify(result), 'application/json');
-		}
-
+		await cb();
+		allure.addAttachment('Arguments', JSON.stringify(args), 'text/plain');
 		allure.endStep('passed');
-		return result;
 	} catch (error) {
-		allure.endStep('failed');
+		console.log(error);
+		allure.endStep('canceled');
 		throw error;
 	}
 }
 
-async function stepMethodAllure(stepName: string, cb: Function, ...args): Promise<string | object> {
+async function stepMethodAllure(stepName: string, cb: Function, ...args): Promise<void> {
 	allure.startStep(stepName);
-	allure.addAttachment('Attachment', args, 'application/json');
+	allure.addAttachment('Arguments', JSON.stringify(args), 'text/plain');
 	try {
-		const result = await cb(...args);
+		await cb(...args);
 		allure.endStep('passed');
-		return result;
 	} catch (error) {
-		allure.endStep('failed');
+		console.log(error);
+		allure.endStep('canceled');
 		throw error;
 	}
 }

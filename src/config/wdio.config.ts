@@ -10,7 +10,7 @@ const config: WebdriverIO.Config = {
 			acceptInsecureCerts: true,
 			browserName: 'chrome',
 			'goog:chromeOptions': {
-				args: ['window-size=1440,960', '--disable-notifications'],
+				args: ['window-size=1440,960', '--headless', '--disable-notifications'],
 			},
 		},
 	],
