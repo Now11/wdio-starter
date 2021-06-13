@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "scripts": {
         "test": "./node_modules/.bin/wdio ./src/config/wdio.config.ts",
-        "test:ci": "npm run clear && ./node_modules/.bin/wdio ./src/config/wdio.ci.config.js",
+        "test:ci": "npm run clear && ./node_modules/.bin/wdio ./src/config/wdio.ci.config.ts",
         "allure": "./node_modules/.bin/allure generate & allure open",
         "clear": "rm -rf allure-results/* & rm -rf allure-report/*",
         "build:image": "docker build -t ui_tests:latest -f ./Tests.Dockerfile .",
