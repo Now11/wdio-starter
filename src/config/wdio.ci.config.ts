@@ -8,7 +8,6 @@ const config: WebdriverIO.Config = {
 			maxInstances: 2,
 			browserName: 'chrome',
 			'goog:chromeOptions': {
-				//args: ['window-size=1440,960', '--disable-dev-shm-usage', '--disable-notifications'],
 				args: [
 					'window-size=1440,960',
 					'--disable-notifications',
