@@ -14,7 +14,6 @@ class Button extends BaseElement {
 	@step((name) => `${name} execute click`)
 	async click(): Promise<void> {
 		await this.waitForVisible();
-		console.log(this.element);
 		await this.element.click();
 	}
 }

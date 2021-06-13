@@ -12,7 +12,7 @@ services:
             # if linux
             - $PWD/src/config/:/etc/selenoid/
             # if Windows
-            # - C:\Users\Professional\Desktop\wdio-test\src\config\:/etc/selenoid/
+            #- C:\Users\Professional\Desktop\edu\pet_testing\wdio-test\src\config:/etc/selenoid/
             - /var/run/docker.sock:/var/run/docker.sock
         command: ['-service-startup-timeout', '1m', '-limit', '25', '-container-network', 'selenoid']
 
@@ -25,16 +25,12 @@ services:
         depends_on:
             - selenoid
         # volumes:
-        # if windows
-        # - C:\Users\Professional\Desktop\wdio-test\allure-results:/usr/automation/allure-results
         # if linux
         # - /allure-results:/usr/automation/allure-results
         environment:
             SELENIUM_HOST: selenoid
             SELENIUM_PORT: 4444
-            APP_URL: https://demo.realworld.io
-            API_URL: https://conduit.productionready.io/api
-
+            APP_URL: http://46.101.234.121
     # selenoid_ui:
     #   networks:
     #     selenoid: null

@@ -5,3 +5,4 @@ output
 .editorconfig
 build
 Dockerfile
+.env

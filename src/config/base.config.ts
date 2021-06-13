@@ -29,18 +29,17 @@ const baseConfig: WebdriverIO.Config = {
 
 	reporters: [
 		'spec',
-		// [
-		// 	'allure',
-		// 	{
-		// 		outputDir: 'allure-results',
-		// 		disableMochaHooks: true,
-		// 		disableWebdriverScreenshotsReporting: false,
-		// 		disableWebdriverStepsReporting: true,
-		// 	},
-		// ],
+		[
+			'allure',
+			{
+				outputDir: 'allure-results',
+				disableMochaHooks: true,
+				disableWebdriverScreenshotsReporting: false,
+				disableWebdriverStepsReporting: true,
+			},
+		],
 	],
 
-	// outputDir: OUTPUT_DIR,
 	mochaOpts: {
 		ui: 'bdd',
 		timeout: 360000,
