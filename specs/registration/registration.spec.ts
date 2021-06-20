@@ -11,7 +11,7 @@ describe('Registration', function () {
 		await browser.url('/sign-up');
 	});
 
-	afterEach(async function () {
+	afterEach(async () => {
 		await browser.reloadSession();
 	});
 
