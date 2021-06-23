@@ -18,7 +18,7 @@ docker pull selenoid/chrome:latest
 docker pull aerokube/selenoid:latest-release
 docker build -t tests:latest -f ./Tests.Dockerfile .
 
-docker-compose up -d
+docker-compose up -d --exit-code-from tests
 
 sleep 3
 

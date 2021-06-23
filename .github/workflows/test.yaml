@@ -1,5 +1,8 @@
 name: WebdriverIO UI Tests
 
+env:
+  NODE_VERSION: 14.17.1
+
 on:
   push:
     branches: [ master ]
@@ -9,10 +12,17 @@ on:
 jobs:          
   tests:
     runs-on: ubuntu-latest
+
     steps:
       - name: copy source code
         uses: actions/checkout@v2
         with:
           submodules: 'true'
+
+      - name: Setup NodeJS v${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
       - name: start tests
-        run: bash ./run.tests.sh
+        run: bash ./run.tests2.sh
