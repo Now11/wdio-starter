@@ -25,4 +25,4 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: start tests
-        run: bash ./run.tests2.sh
+        run: bash ./run.tests.sh

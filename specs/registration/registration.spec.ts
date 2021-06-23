@@ -30,8 +30,4 @@ describe('Registration', function () {
 		await authPage.register(user);
 		await expect(browser).toHaveUrl(`${env.app.baseUrl}/doctors`);
 	});
-
-	it('BROKEN TEST', async function () {
-		expect(1).toBe(2);
-	});
 });

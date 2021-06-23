@@ -21,8 +21,8 @@ services:
         container_name: tests
         depends_on:
             - selenoid
-        volumes:
-            # - /allure-results:/usr/automation/allure-results
+        #volumes:
+        # - /allure-results:/usr/automation/allure-results
         environment:
             SELENIUM_HOST: selenoid
             SELENIUM_PORT: 4444

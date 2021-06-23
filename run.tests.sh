@@ -1,35 +1,11 @@
 #!/usr/bin/bash
 
-set -e
-
-function wait() {
-  DOCKER_PS_OUTPUT=$(docker ps)
-  if [[ $DOCKER_PS_OUTPUT =~ "tests" ]]; then
-    RESULT=1
-  else
-    RESULT=2
-  fi
-}
-
-
-docker network create selenoid || true
-
 docker pull selenoid/chrome:latest
 docker pull aerokube/selenoid:latest-release
-docker build -t tests:latest -f ./Tests.Dockerfile .
 
-docker-compose up -d --exit-code-from tests
+docker run -d -p 4444:4444 --name selenoid -v $PWD/src/config/:/etc/selenoid/ -v /var/run/docker.sock:/var/run/docker.sock aerokube/selenoid:latest-release
 
-sleep 3
+npm install
 
-wait
+npm run test:ci
 
-while [ $RESULT -lt 2 ]; do
-  echo 'Testing . . . '
-  sleep 10
-  wait
-done
-
-docker logs tests
-ls -la allure-results
-docker-compose down
