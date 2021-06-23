@@ -1,28 +1,36 @@
 name: WebdriverIO UI Tests
 
 env:
-  NODE_VERSION: 14.17.1
-
+    NODE_VERSION: 14.17.1
+    SELENIUM_PORT: 4444
+    SELENIUM_HOST: localhost
+    SELENIUM_PATH: /wd/hub
+    ALLURE: false
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    push:
+      branches: [ master ]
+    pull_request:
+      branches: [ master ]
 
 jobs:          
-  tests:
-    runs-on: ubuntu-latest
+    tests:
+      runs-on: ubuntu-latest
 
-    steps:
-      - name: copy source code
-        uses: actions/checkout@v2
-        with:
-          submodules: 'true'
+      steps:
+        - name: copy source code
+          uses: actions/checkout@v2
+          with:
+            submodules: 'true'
 
-      - name: Setup NodeJS v${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+        - name: Setup NodeJS v${{ env.NODE_VERSION }}
+          uses: actions/setup-node@v2
+          with:
+            node-version: ${{ env.NODE_VERSION }}
 
-      - name: start tests
-        run: bash ./run.tests.sh
+        - name: start tests
+          run: bash ./run.tests.sh
+          env: 
+              SELENIUM_HOST: ${{ env.SELENIUM_HOST }}
+              SELENIUM_PATH: ${{ env.SELENIUM_PATH }}
+              SELENIUM_PORT: ${{ env.SELENIUM_PORT }}
+              ALLURE: ${{ env.ALLURE }}
