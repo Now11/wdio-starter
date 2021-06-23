@@ -6,6 +6,7 @@ env:
     SELENIUM_HOST: localhost
     SELENIUM_PATH: /wd/hub
     ALLURE: false
+    APP_URL: http://46.101.234.121
 on:
     push:
       branches: [ master ]
@@ -28,9 +29,11 @@ jobs:
             node-version: ${{ env.NODE_VERSION }}
 
         - name: start tests
-          run: bash ./run.tests.sh
+          run: |
+              bash ./run.tests.sh
           env: 
               SELENIUM_HOST: ${{ env.SELENIUM_HOST }}
               SELENIUM_PATH: ${{ env.SELENIUM_PATH }}
               SELENIUM_PORT: ${{ env.SELENIUM_PORT }}
               ALLURE: ${{ env.ALLURE }}
+              APP_URL: ${{ env.APP_URL }}
