@@ -2,7 +2,7 @@ import { baseConfig } from './base.config';
 
 const config: WebdriverIO.Config = {
 	...baseConfig,
-	logLevel: 'silent',
+	logLevel: process.env.LOGLEVEL as any,
 	capabilities: [
 		{
 			maxInstances: 2,

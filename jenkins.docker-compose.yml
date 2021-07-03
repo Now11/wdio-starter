@@ -1,0 +1,31 @@
+version: '3.5'
+
+services:
+    selenoid:
+        image: aerokube/selenoid:latest-release
+        container_name: 'selenoid-${ID}'
+        volumes:
+            - $PWD/src/config/:/etc/selenoid/
+            - /var/run/docker.sock:/var/run/docker.sock
+        command: ['-service-startup-timeout', '1m', '-limit', '25', '-container-network', 'network-${ID}']
+        networks:
+            - tests
+
+    ui-tests:
+        image: 'ui_tests-${ID}'
+        container_name: 'tests-${ID}'
+        depends_on:
+            - selenoid
+        environment:
+            SELENIUM_HOST: 'selenoid-${ID}'
+            SELENIUM_PORT: 4444
+            APP_URL: http://46.101.234.121
+            LOGLEVEL: silent
+            ALLURE: 1
+        volumes:
+            - $PWD/allure-results:/usr/automation/allure-results
+        networks:
+            - tests
+networks:
+    tests:
+        name: 'network-${ID}'

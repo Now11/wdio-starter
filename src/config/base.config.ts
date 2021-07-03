@@ -27,18 +27,7 @@ const baseConfig: WebdriverIO.Config = {
 
 	framework: 'mocha',
 
-	reporters: [
-		'spec',
-		[
-			'allure',
-			{
-				outputDir: 'allure-results',
-				disableMochaHooks: true,
-				disableWebdriverScreenshotsReporting: false,
-				disableWebdriverStepsReporting: true,
-			},
-		],
-	],
+	reporters: ['spec'],
 
 	mochaOpts: {
 		ui: 'bdd',
@@ -61,5 +50,17 @@ const baseConfig: WebdriverIO.Config = {
 	},
 	//outputDir: OUTPUT_DIR,
 };
+
+if (env.config.allure) {
+	baseConfig.reporters.push([
+		'allure',
+		{
+			outputDir: 'allure-results',
+			disableMochaHooks: true,
+			disableWebdriverScreenshotsReporting: false,
+			disableWebdriverStepsReporting: true,
+		},
+	]);
+}
 
 export { baseConfig };
