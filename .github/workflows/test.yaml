@@ -5,7 +5,7 @@ env:
     SELENIUM_PORT: 4444
     SELENIUM_HOST: localhost
     SELENIUM_PATH: /wd/hub
-    ALLURE: false
+    ALLURE: 0
     APP_URL: http://46.101.234.121
 on:
     push:
