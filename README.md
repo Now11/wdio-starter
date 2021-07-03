@@ -3,4 +3,5 @@
 tests => `docker build -f Tests.Dockerfile -t tests .`
 
 `docker-compose up`
-123456
+
+12345678
