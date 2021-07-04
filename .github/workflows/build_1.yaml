@@ -1,0 +1,23 @@
+name: CI Build
+
+
+on:
+    push:
+        branches: [ master ]
+    
+
+jobs:          
+    build:
+        if: github.event.pull_request.merged == true
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Build app
+              run: |
+                  echo "Built"
+    close_job:
+        if: github.event.pull_request.merged == false
+        runs-on: ubuntu-latest
+        steps:
+            - run: |
+                echo PR #${{ github.event.number }} has been closed without being merged
