@@ -9,7 +9,7 @@ env:
     APP_URL: http://46.101.234.121
 on:
     workflow_run:
-      workflows: ["CI build"]
+      workflows: ["CI Build"]
       types:
         - completed
 
